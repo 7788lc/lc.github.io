@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl"/>
+  
+  
+  
+  
+  <title>品质数据处理 | neo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="品质数据（非数值数据）的处理 品质数据是用文字表示的，主要做分类处理，品质数据又分为分类数据和顺序数据。 分类数据是说明事物类别的一个名称，例如：水果类，蔬菜类，肉类。 顺序数据是说明事物有序类别的一个名称，例如：服务等级分为优，良，中。学历分为大专，本科，研究生。等等 123456789101112#以泰坦尼克数据为例import warningswarnings.filterwarnings(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="品质数据处理">
+<meta property="og:url" content="https://lc1-11.github.io/2021/09/22/%E5%93%81%E8%B4%A8%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/index.html">
+<meta property="og:site_name" content="neo">
+<meta property="og:description" content="品质数据（非数值数据）的处理 品质数据是用文字表示的，主要做分类处理，品质数据又分为分类数据和顺序数据。 分类数据是说明事物类别的一个名称，例如：水果类，蔬菜类，肉类。 顺序数据是说明事物有序类别的一个名称，例如：服务等级分为优，良，中。学历分为大专，本科，研究生。等等 123456789101112#以泰坦尼克数据为例import warningswarnings.filterwarnings(">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lc1-11.github.io/.io//output_3_1.png">
+<meta property="og:image" content="https://lc1-11.github.io/.io//output_5_1.png">
+<meta property="og:image" content="https://lc1-11.github.io/.io//output_6_1.png">
+<meta property="og:image" content="https://lc1-11.github.io/.io//output_12_1.png">
+<meta property="article:published_time" content="2021-09-22T14:26:28.000Z">
+<meta property="article:modified_time" content="2021-09-22T14:37:31.253Z">
+<meta property="article:author" content="a joker">
+<meta property="article:tag" content="数据预处理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lc1-11.github.io/.io//output_3_1.png">
+  
+    <link rel="alternative" href="/atom.xml" title="neo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/avatar.png" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/"></a></h1>
+        </hgroup>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+            <div id="local-search-result"></div>
+        
+        
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a  href="/archives/">所有文章</a></li>
+                        
+                            <li><a  href="/categories/%E7%BB%9F%E8%AE%A1/">统计</a></li>
+                        
+                            <li><a  href="/categories/%E7%BF%BB%E8%AF%91">翻译</a></li>
+                        
+                            <li><a  href="/categories/%E7%BC%96%E7%A8%8B">编程</a></li>
+                        
+                            <li><a  href="/about/">关于</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github"  target="_blank" href="/xxxxx" title="github">github</a>
+                            
+                                <a class="fl weibo"  target="_blank" href="/xxxx" title="weibo">weibo</a>
+                            
+                                <a class="fl rss"  target="_blank" href="/atom.xml" title="rss">rss</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/python%E6%95%B0%E6%8D%AE%E9%80%8F%E8%A7%86%E8%A1%A8/" style="font-size: 10px;">python数据透视表</a> <a href="/tags/%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/" style="font-size: 20px;">参数估计</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%A6%E9%87%8F/" style="font-size: 20px;">数据度量</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E8%AF%AF%E5%B7%AE/" style="font-size: 10px;">数据误差</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/" style="font-size: 20px;">数据预处理</a>
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="/xxx">csdn</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="/xxx">segmentfault</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="/xxx">简书</a>
+                    
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">！！!</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页"></a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/avatar.png" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页"></a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/categories/%E7%BB%9F%E8%AE%A1/">统计</a></li>
+                
+                    <li><a href="/categories/%E7%BF%BB%E8%AF%91">翻译</a></li>
+                
+                    <li><a href="/categories/%E7%BC%96%E7%A8%8B">编程</a></li>
+                
+                    <li><a href="/about/">关于</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="/xxxxx" title="github">github</a>
+                    
+                        <a class="weibo" target="_blank" href="/xxxx" title="weibo">weibo</a>
+                    
+                        <a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                    
+                </div>
+            </nav>
+        </header>
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-品质数据处理" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2021/09/22/%E5%93%81%E8%B4%A8%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" class="article-date">
+      <time datetime="2021-09-22T14:26:28.000Z" itemprop="datePublished">2021-09-22</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      品质数据处理
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/%E7%BB%9F%E8%AE%A1/">统计</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/" rel="tag">数据预处理</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><strong>品质数据（非数值数据）的处理</strong></p>
+<p>品质数据是用文字表示的，主要做分类处理，品质数据又分为分类数据和顺序数据。</p>
+<p>分类数据是说明事物类别的一个名称，例如：水果类，蔬菜类，肉类。</p>
+<p>顺序数据是说明事物有序类别的一个名称，例如：服务等级分为优，良，中。学历分为大专，本科，研究生。等等</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#以泰坦尼克数据为例</span></span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">&#x27;ignore&#x27;</span>)</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="comment">#数据在kaggle官网下载，注册一个账号就行</span></span><br><span class="line">data = pd.read_csv(<span class="string">&#x27;train.csv&#x27;</span>)</span><br><span class="line">df = data.sample(<span class="number">200</span>)</span><br><span class="line"></span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>50</th>
+      <td>51</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Panula, Master. Juha Niilo</td>
+      <td>male</td>
+      <td>7.0</td>
+      <td>4</td>
+      <td>1</td>
+      <td>3101295</td>
+      <td>39.6875</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>272</th>
+      <td>273</td>
+      <td>1</td>
+      <td>2</td>
+      <td>Mellinger, Mrs. (Elizabeth Anne Maidment)</td>
+      <td>female</td>
+      <td>41.0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>250644</td>
+      <td>19.5000</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>284</th>
+      <td>285</td>
+      <td>0</td>
+      <td>1</td>
+      <td>Smith, Mr. Richard William</td>
+      <td>male</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>113056</td>
+      <td>26.0000</td>
+      <td>A19</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>142</th>
+      <td>143</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Hakkarainen, Mrs. Pekka Pietari (Elin Matilda ...</td>
+      <td>female</td>
+      <td>24.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>STON/O2. 3101279</td>
+      <td>15.8500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>767</th>
+      <td>768</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Mangan, Miss. Mary</td>
+      <td>female</td>
+      <td>30.5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>364850</td>
+      <td>7.7500</td>
+      <td>NaN</td>
+      <td>Q</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>282</th>
+      <td>283</td>
+      <td>0</td>
+      <td>3</td>
+      <td>de Pelsmaeker, Mr. Alfons</td>
+      <td>male</td>
+      <td>16.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>345778</td>
+      <td>9.5000</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>863</th>
+      <td>864</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Sage, Miss. Dorothy Edith "Dolly"</td>
+      <td>female</td>
+      <td>NaN</td>
+      <td>8</td>
+      <td>2</td>
+      <td>CA. 2343</td>
+      <td>69.5500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>491</th>
+      <td>492</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Windelov, Mr. Einar</td>
+      <td>male</td>
+      <td>21.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>SOTON/OQ 3101317</td>
+      <td>7.2500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>637</th>
+      <td>638</td>
+      <td>0</td>
+      <td>2</td>
+      <td>Collyer, Mr. Harvey</td>
+      <td>male</td>
+      <td>31.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>C.A. 31921</td>
+      <td>26.2500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>317</th>
+      <td>318</td>
+      <td>0</td>
+      <td>2</td>
+      <td>Moraweck, Dr. Ernest</td>
+      <td>male</td>
+      <td>54.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>29011</td>
+      <td>14.0000</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
+<p>200 rows × 12 columns</p>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看购买1,2,3类等级票各有多少人</span></span><br><span class="line">df[<span class="string">&#x27;Pclass&#x27;</span>].value_counts()</span><br></pre></td></tr></table></figure>
+<pre><code>3    112
+2     46
+1     42
+Name: Pclass, dtype: int64
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#饼图查看频数</span></span><br><span class="line">pclass = df[<span class="string">&#x27;Pclass&#x27;</span>].value_counts()</span><br><span class="line">labels=[<span class="string">&#x27;3&#x27;</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;1&#x27;</span>]</span><br><span class="line">fig = plt.figure()</span><br><span class="line">plt.pie(pclass,labels=labels,autopct=<span class="string">&#x27;%1.2f%%&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&quot;Pie Chart&quot;</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>Text(0.5,1,&#39;Pie Chart&#39;)
+</code></pre><p><img src="/.io//output_3_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#根据登录港口 查看各等级票的人数  按升序排列</span></span><br><span class="line">s = df[<span class="string">&#x27;Pclass&#x27;</span>][df[<span class="string">&#x27;Embarked&#x27;</span>]==<span class="string">&#x27;S&#x27;</span>].value_counts().sort_index(ascending = <span class="literal">True</span>)<span class="comment">#S港口登录的人</span></span><br><span class="line"><span class="built_in">print</span>(s)</span><br><span class="line">c = df[<span class="string">&#x27;Pclass&#x27;</span>][df[<span class="string">&#x27;Embarked&#x27;</span>]==<span class="string">&#x27;C&#x27;</span>].value_counts().sort_index(ascending = <span class="literal">True</span>)<span class="comment">#C港口登录的人</span></span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"><span class="comment">#可见C港登录的人中 1类票人最多 也就是这个港口登录的有钱人比较多</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>1    24
+2    42
+3    86
+Name: Pclass, dtype: int64
+1    18
+2     3
+3    11
+Name: Pclass, dtype: int64
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#条形图展示 各港口的票类型频数</span></span><br><span class="line">sns.catplot(<span class="string">&#x27;Pclass&#x27;</span>,col=<span class="string">&#x27;Embarked&#x27;</span>,kind=<span class="string">&#x27;count&#x27;</span>,data=data,height=<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x220e3ec8748&gt;
+</code></pre><p><img src="/.io//output_5_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">#男士，女士生存率 Survived=0代表死亡  Survived=1代表生存</span></span><br><span class="line">sns.catplot(<span class="string">&#x27;Sex&#x27;</span>,col=<span class="string">&#x27;Survived&#x27;</span>,kind=<span class="string">&#x27;count&#x27;</span>,data=data,height=<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x220e3c7c860&gt;
+</code></pre><p><img src="/.io//output_6_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用交叉表统计分类频数 margins=True 是添加行列合计功能</span></span><br><span class="line"><span class="comment">#使用交叉表比单独使用value_counts 表达更清晰</span></span><br><span class="line">pd.crosstab(df[<span class="string">&#x27;Pclass&#x27;</span>],df[<span class="string">&#x27;Embarked&#x27;</span>],margins=<span class="literal">True</span>)</span><br><span class="line"><span class="comment">#pd.crosstab(df[&#x27;Pclass&#x27;],df[&#x27;Embarked&#x27;]).applay(lambda row：row/row.sum())</span></span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Embarked</th>
+      <th>C</th>
+      <th>Q</th>
+      <th>S</th>
+      <th>All</th>
+    </tr>
+    <tr>
+      <th>Pclass</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>18</td>
+      <td>0</td>
+      <td>24</td>
+      <td>42</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>42</td>
+      <td>46</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>11</td>
+      <td>15</td>
+      <td>86</td>
+      <td>112</td>
+    </tr>
+    <tr>
+      <th>All</th>
+      <td>32</td>
+      <td>16</td>
+      <td>152</td>
+      <td>200</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#crosstab更高级的用法</span></span><br><span class="line"><span class="comment">#考试是否及格  Y--及格  N--不及格</span></span><br><span class="line">p = np.array([<span class="string">&quot;Y&quot;</span>, <span class="string">&quot;Y&quot;</span>, <span class="string">&quot;Y&quot;</span>, <span class="string">&quot;Y&quot;</span>, <span class="string">&quot;N&quot;</span>, <span class="string">&quot;N&quot;</span>,<span class="string">&quot;N&quot;</span>, <span class="string">&quot;N&quot;</span>, <span class="string">&quot;Y&quot;</span>, <span class="string">&quot;Y&quot;</span>, <span class="string">&quot;Y&quot;</span>], dtype=<span class="built_in">object</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#年级 1年级  2年级</span></span><br><span class="line">g = np.array([<span class="string">&quot;1&quot;</span>, <span class="string">&quot;1&quot;</span>, <span class="string">&quot;1&quot;</span>, <span class="string">&quot;2&quot;</span>, <span class="string">&quot;1&quot;</span>, <span class="string">&quot;1&quot;</span>,<span class="string">&quot;1&quot;</span>, <span class="string">&quot;2&quot;</span>, <span class="string">&quot;2&quot;</span>, <span class="string">&quot;2&quot;</span>, <span class="string">&quot;1&quot;</span>], dtype=<span class="built_in">object</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#考试科目  数学M 语文C</span></span><br><span class="line">c = np.array([<span class="string">&quot;M&quot;</span>, <span class="string">&quot;M&quot;</span>, <span class="string">&quot;C&quot;</span>, <span class="string">&quot;M&quot;</span>, <span class="string">&quot;M&quot;</span>, <span class="string">&quot;C&quot;</span>,<span class="string">&quot;C&quot;</span>, <span class="string">&quot;M&quot;</span>, <span class="string">&quot;C&quot;</span>, <span class="string">&quot;C&quot;</span>, <span class="string">&quot;C&quot;</span>],dtype=<span class="built_in">object</span>)</span><br><span class="line"></span><br><span class="line">pd.crosstab(p, [g, c], rownames=[<span class="string">u&#x27;是否及格&#x27;</span>], colnames=[<span class="string">u&#x27;年级&#x27;</span>, <span class="string">u&#x27;科目&#x27;</span>],margins=<span class="literal">True</span>)</span><br><span class="line"><span class="comment">#可见 一年级为例 数学2个及格 ，1个不及格   语文2个及格，2个不及格</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th>年级</th>
+      <th colspan="2" halign="left">1</th>
+      <th colspan="2" halign="left">2</th>
+      <th>All</th>
+    </tr>
+    <tr>
+      <th>科目</th>
+      <th>C</th>
+      <th>M</th>
+      <th>C</th>
+      <th>M</th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>是否及格</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>N</th>
+      <td>2</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>Y</th>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>All</th>
+      <td>4</td>
+      <td>3</td>
+      <td>2</td>
+      <td>2</td>
+      <td>11</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看及格人数比例</span></span><br><span class="line">proportion = pd.crosstab(p, [g, c], rownames=[<span class="string">u&#x27;是否及格&#x27;</span>], colnames=[<span class="string">u&#x27;年级&#x27;</span>, <span class="string">u&#x27;科目&#x27;</span>]).apply(<span class="keyword">lambda</span> row: row/row.<span class="built_in">sum</span>(),axis=<span class="number">1</span>)</span><br><span class="line">proportion</span><br><span class="line"><span class="comment">#一年级语文不及格人数占总不及格人数的1/2 数学不及格人数占总不及格人数1/4</span></span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th>年级</th>
+      <th colspan="2" halign="left">1</th>
+      <th colspan="2" halign="left">2</th>
+    </tr>
+    <tr>
+      <th>科目</th>
+      <th>C</th>
+      <th>M</th>
+      <th>C</th>
+      <th>M</th>
+    </tr>
+    <tr>
+      <th>是否及格</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>N</th>
+      <td>0.500000</td>
+      <td>0.250000</td>
+      <td>0.000000</td>
+      <td>0.250000</td>
+    </tr>
+    <tr>
+      <th>Y</th>
+      <td>0.285714</td>
+      <td>0.285714</td>
+      <td>0.285714</td>
+      <td>0.142857</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看及格人数比率 即百分比 乘以100就行</span></span><br><span class="line">percentage = pd.crosstab(p, [g, c], rownames=[<span class="string">u&#x27;是否及格&#x27;</span>], colnames=[<span class="string">u&#x27;年级&#x27;</span>, <span class="string">u&#x27;科目&#x27;</span>]).apply(<span class="keyword">lambda</span> row: row/row.<span class="built_in">sum</span>() *<span class="number">100</span>,axis=<span class="number">1</span>)</span><br><span class="line">percentage</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th>年级</th>
+      <th colspan="2" halign="left">1</th>
+      <th colspan="2" halign="left">2</th>
+    </tr>
+    <tr>
+      <th>科目</th>
+      <th>C</th>
+      <th>M</th>
+      <th>C</th>
+      <th>M</th>
+    </tr>
+    <tr>
+      <th>是否及格</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>N</th>
+      <td>50.000000</td>
+      <td>25.000000</td>
+      <td>0.000000</td>
+      <td>25.000000</td>
+    </tr>
+    <tr>
+      <th>Y</th>
+      <td>28.571429</td>
+      <td>28.571429</td>
+      <td>28.571429</td>
+      <td>14.285714</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<p><strong>顺序数据的整理与图示</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#还是以登录港口人数作为统计案例，严格来说登录港口不算是顺序数据。</span></span><br><span class="line"><span class="comment">#但是这里结合登录人数可以看出它隐含了一些假设，港口登录的人数是有序的</span></span><br><span class="line"><span class="comment">#查看顺序数据的累积频数</span></span><br><span class="line">desc = data[<span class="string">&#x27;Embarked&#x27;</span>].value_counts()<span class="comment">#默认降序排列</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(desc)</span><br><span class="line"></span><br><span class="line">asc = desc.sort_values(ascending=<span class="literal">True</span>)</span><br><span class="line">base = [<span class="number">100</span>,<span class="number">400</span>,<span class="number">650</span>]</span><br><span class="line">plt.figure(figsize=(<span class="number">9</span>,<span class="number">3</span>))</span><br><span class="line">plt.subplot(<span class="number">121</span>)</span><br><span class="line"><span class="comment">#降序排列</span></span><br><span class="line">plt.plot(desc,base,c=<span class="string">&#x27;green&#x27;</span>)</span><br><span class="line">plt.subplot(<span class="number">122</span>)</span><br><span class="line"><span class="comment">#升序排列</span></span><br><span class="line">plt.plot(asc,base,c=<span class="string">&#x27;red&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<pre><code>S    644
+C    168
+Q     77
+Name: Embarked, dtype: int64
+</code></pre><p><img src="/.io//output_12_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a  href="/2021/09/22/%E5%93%81%E8%B4%A8%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">品质数据处理</a></p>
+        <p><span>文章作者:</span><a  href="/" title="访问  的个人博客"></a></p>
+        <p><span>发布时间:</span>2021年09月22日 - 22时26分</p>
+        <p><span>最后更新:</span>2021年09月22日 - 22时37分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2021/09/22/%E5%93%81%E8%B4%A8%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" title="品质数据处理">https://lc1-11.github.io/2021/09/22/%E5%93%81%E8%B4%A8%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://lc1-11.github.io/2021/09/22/%E5%93%81%E8%B4%A8%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/　　作者: " title=""></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a  href="/2021/09/22/%E7%A6%BB%E6%95%A3%E7%A8%8B%E5%BA%A6%E5%BA%A6%E9%87%8F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          数据离散程度的度量
+        
+      </div>
+    </a>
+  
+  
+    <a  href="/2021/09/22/%E6%80%BB%E4%BD%93%E6%96%B9%E5%B7%AE%E4%B8%8E%E5%9D%87%E5%80%BC%E5%8C%BA%E9%97%B4%E4%BC%B0%E8%AE%A1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">总体均值与方差区间估计</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <section class="changyan" id="comments">
+  <!--<div id="uyan_frame"></div>-->
+  <div id="SOHUCS"></div>
+  <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js"></script>
+  <script type="text/javascript">
+    window.changyan.api.config({
+      appid: 'xxxx',
+      conf: 'xxxxxxxxx'
+    });
+  </script>
+</section>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a  href="/2021/09/22/%E7%A6%BB%E6%95%A3%E7%A8%8B%E5%BA%A6%E5%BA%A6%E9%87%8F/" title="上一篇: 数据离散程度的度量">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a  href="/2021/09/22/%E6%80%BB%E4%BD%93%E6%96%B9%E5%B7%AE%E4%B8%8E%E5%9D%87%E5%80%BC%E5%8C%BA%E9%97%B4%E4%BC%B0%E8%AE%A1/" title="下一篇: 总体均值与方差区间估计">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2021/09/22/%E6%95%B0%E5%80%BC%E5%9E%8B%E6%95%B0%E6%8D%AE/">数值型数据处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/22/%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%AD%E8%B6%8B%E5%8A%BF%E5%BA%A6%E9%87%8F/">数据集中趋势度量</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/22/%E7%A6%BB%E6%95%A3%E7%A8%8B%E5%BA%A6%E5%BA%A6%E9%87%8F/">数据离散程度的度量</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/22/%E5%93%81%E8%B4%A8%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">品质数据处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/22/%E6%80%BB%E4%BD%93%E6%96%B9%E5%B7%AE%E4%B8%8E%E5%9D%87%E5%80%BC%E5%8C%BA%E9%97%B4%E4%BC%B0%E8%AE%A1/">总体均值与方差区间估计</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/22/%E6%80%BB%E4%BD%93%E5%9D%87%E5%80%BC%E5%8C%BA%E9%97%B4%E4%BC%B0%E8%AE%A1/">总体均值区间估计</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/22/sampling/">抽样误差</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/22/%E6%95%B0%E6%8D%AE%E9%80%8F%E8%A7%86%E8%A1%A8/">数据透视表</a></li></ul>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2021 a joker
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo &nbsp;&nbsp;</a><a href="https://github.com/maochunguang" target="_blank">Blog</a> by tommy
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >极客到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?xxxxxx";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>

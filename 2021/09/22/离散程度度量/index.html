@@ -7,19 +7,19 @@
   
   
   
-  <title>数据透视表 | neo</title>
+  <title>数据离散程度的度量 | neo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="数据透视表 pivot table 123456789import warningswarnings.filterwarnings(&amp;#x27;ignore&amp;#x27;)import numpy as npimport pandas as pdimport seaborn as snsdata &#x3D; pd.read_csv(&amp;#x27;data1.csv&amp;#x27;)data.pivot_table">
+  <meta name="description" content="离散程度的度量 离散程度反映各变量值远离其中心值的程度  分类数据：异众比率 异众比是指非众数的频数占总频数的比例 $ V_r &#x3D; \frac {\sum f_i-f_m}{\sum f_i} &#x3D;1- \frac {f_m}{\sum f_i}$ 式中，$ \sum f_i $为变量值的总频数；$ f_m $为众数组的频数 异众比率主要用于衡量众数对一组数据的代表程度。 异众比率越大，说明非众数组">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据透视表">
-<meta property="og:url" content="https://lc1-11.github.io/2021/09/22/%E6%95%B0%E6%8D%AE%E9%80%8F%E8%A7%86%E8%A1%A8/index.html">
+<meta property="og:title" content="数据离散程度的度量">
+<meta property="og:url" content="https://lc1-11.github.io/2021/09/22/%E7%A6%BB%E6%95%A3%E7%A8%8B%E5%BA%A6%E5%BA%A6%E9%87%8F/index.html">
 <meta property="og:site_name" content="neo">
-<meta property="og:description" content="数据透视表 pivot table 123456789import warningswarnings.filterwarnings(&amp;#x27;ignore&amp;#x27;)import numpy as npimport pandas as pdimport seaborn as snsdata &#x3D; pd.read_csv(&amp;#x27;data1.csv&amp;#x27;)data.pivot_table">
+<meta property="og:description" content="离散程度的度量 离散程度反映各变量值远离其中心值的程度  分类数据：异众比率 异众比是指非众数的频数占总频数的比例 $ V_r &#x3D; \frac {\sum f_i-f_m}{\sum f_i} &#x3D;1- \frac {f_m}{\sum f_i}$ 式中，$ \sum f_i $为变量值的总频数；$ f_m $为众数组的频数 异众比率主要用于衡量众数对一组数据的代表程度。 异众比率越大，说明非众数组">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-09-22T13:07:48.000Z">
-<meta property="article:modified_time" content="2021-09-22T14:07:32.919Z">
+<meta property="article:published_time" content="2021-09-22T14:43:29.000Z">
+<meta property="article:modified_time" content="2021-09-22T14:53:19.900Z">
 <meta property="article:author" content="a joker">
-<meta property="article:tag" content="python数据透视表">
+<meta property="article:tag" content="数据度量">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="neo" type="application/atom+xml">
@@ -281,11 +281,11 @@
         </header>
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-数据透视表" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-离散程度度量" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2021/09/22/%E6%95%B0%E6%8D%AE%E9%80%8F%E8%A7%86%E8%A1%A8/" class="article-date">
-      <time datetime="2021-09-22T13:07:48.000Z" itemprop="datePublished">2021-09-22</time>
+      <a  href="/2021/09/22/%E7%A6%BB%E6%95%A3%E7%A8%8B%E5%BA%A6%E5%BA%A6%E9%87%8F/" class="article-date">
+      <time datetime="2021-09-22T14:43:29.000Z" itemprop="datePublished">2021-09-22</time>
 </a>
 
     </div>
@@ -299,7 +299,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      数据透视表
+      数据离散程度的度量
     </h1>
   
 
@@ -315,7 +315,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python%E6%95%B0%E6%8D%AE%E9%80%8F%E8%A7%86%E8%A1%A8/" rel="tag">python数据透视表</a></li></ul>
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%A6%E9%87%8F/" rel="tag">数据度量</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -325,720 +325,76 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><strong>数据透视表 pivot table</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">&#x27;ignore&#x27;</span>)</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"></span><br><span class="line">data = pd.read_csv(<span class="string">&#x27;data1.csv&#x27;</span>)</span><br><span class="line">data.pivot_table(df,index=[<span class="string">u&#x27;对手&#x27;</span>])<span class="comment">#以比赛对手为索引查看数据</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>3分命中率</th>
-      <th>助攻</th>
-      <th>命中</th>
-      <th>得分</th>
-      <th>投篮命中率</th>
-      <th>投篮数</th>
-      <th>篮板</th>
-    </tr>
-    <tr>
-      <th>对手</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>76人</th>
-      <td>0.33950</td>
-      <td>10.00</td>
-      <td>9.0</td>
-      <td>28.00</td>
-      <td>0.4405</td>
-      <td>20.5</td>
-      <td>3.5</td>
-    </tr>
-    <tr>
-      <th>勇士</th>
-      <td>0.44400</td>
-      <td>11.00</td>
-      <td>10.0</td>
-      <td>27.00</td>
-      <td>0.4350</td>
-      <td>23.0</td>
-      <td>6.0</td>
-    </tr>
-    <tr>
-      <th>国王</th>
-      <td>0.28600</td>
-      <td>9.00</td>
-      <td>8.0</td>
-      <td>27.00</td>
-      <td>0.3810</td>
-      <td>21.0</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>太阳</th>
-      <td>0.54500</td>
-      <td>7.00</td>
-      <td>12.0</td>
-      <td>48.00</td>
-      <td>0.5450</td>
-      <td>22.0</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>小牛</th>
-      <td>0.46200</td>
-      <td>7.00</td>
-      <td>10.0</td>
-      <td>29.00</td>
-      <td>0.5260</td>
-      <td>19.0</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>尼克斯</th>
-      <td>0.36900</td>
-      <td>9.50</td>
-      <td>10.5</td>
-      <td>34.00</td>
-      <td>0.4175</td>
-      <td>25.0</td>
-      <td>3.5</td>
-    </tr>
-    <tr>
-      <th>开拓者</th>
-      <td>0.57100</td>
-      <td>3.00</td>
-      <td>16.0</td>
-      <td>48.00</td>
-      <td>0.5520</td>
-      <td>29.0</td>
-      <td>8.0</td>
-    </tr>
-    <tr>
-      <th>掘金</th>
-      <td>0.14300</td>
-      <td>9.00</td>
-      <td>6.0</td>
-      <td>21.00</td>
-      <td>0.3750</td>
-      <td>16.0</td>
-      <td>8.0</td>
-    </tr>
-    <tr>
-      <th>步行者</th>
-      <td>0.29150</td>
-      <td>12.50</td>
-      <td>8.5</td>
-      <td>27.50</td>
-      <td>0.3965</td>
-      <td>21.5</td>
-      <td>6.5</td>
-    </tr>
-    <tr>
-      <th>湖人</th>
-      <td>0.44400</td>
-      <td>9.00</td>
-      <td>13.0</td>
-      <td>36.00</td>
-      <td>0.5910</td>
-      <td>22.0</td>
-      <td>4.0</td>
-    </tr>
-    <tr>
-      <th>灰熊</th>
-      <td>0.35025</td>
-      <td>7.75</td>
-      <td>8.5</td>
-      <td>27.25</td>
-      <td>0.4015</td>
-      <td>21.0</td>
-      <td>4.5</td>
-    </tr>
-    <tr>
-      <th>爵士</th>
-      <td>0.60400</td>
-      <td>8.00</td>
-      <td>13.5</td>
-      <td>42.50</td>
-      <td>0.5905</td>
-      <td>22.0</td>
-      <td>3.5</td>
-    </tr>
-    <tr>
-      <th>猛龙</th>
-      <td>0.27300</td>
-      <td>11.00</td>
-      <td>8.0</td>
-      <td>38.00</td>
-      <td>0.3200</td>
-      <td>25.0</td>
-      <td>6.0</td>
-    </tr>
-    <tr>
-      <th>篮网</th>
-      <td>0.61500</td>
-      <td>8.00</td>
-      <td>13.0</td>
-      <td>37.00</td>
-      <td>0.6500</td>
-      <td>20.0</td>
-      <td>10.0</td>
-    </tr>
-    <tr>
-      <th>老鹰</th>
-      <td>0.54500</td>
-      <td>11.00</td>
-      <td>8.0</td>
-      <td>29.00</td>
-      <td>0.5330</td>
-      <td>15.0</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>骑士</th>
-      <td>0.42900</td>
-      <td>13.00</td>
-      <td>8.0</td>
-      <td>35.00</td>
-      <td>0.3810</td>
-      <td>21.0</td>
-      <td>11.0</td>
-    </tr>
-    <tr>
-      <th>鹈鹕</th>
-      <td>0.40000</td>
-      <td>17.00</td>
-      <td>8.0</td>
-      <td>26.00</td>
-      <td>0.5000</td>
-      <td>16.0</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>黄蜂</th>
-      <td>0.40000</td>
-      <td>11.00</td>
-      <td>8.0</td>
-      <td>27.00</td>
-      <td>0.4440</td>
-      <td>18.0</td>
-      <td>10.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data.pivot_table(df,index=[<span class="string">u&#x27;主客场&#x27;</span>,<span class="string">u&#x27;对手&#x27;</span>])<span class="comment">#两个索引</span></span><br></pre></td></tr></table></figure>
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th></th>
-      <th>3分命中率</th>
-      <th>助攻</th>
-      <th>命中</th>
-      <th>得分</th>
-      <th>投篮命中率</th>
-      <th>投篮数</th>
-      <th>篮板</th>
-    </tr>
-    <tr>
-      <th>主客场</th>
-      <th>对手</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th rowspan="7" valign="top">主</th>
-      <th>76人</th>
-      <td>0.4290</td>
-      <td>7.0</td>
-      <td>8.0</td>
-      <td>29.0</td>
-      <td>0.381</td>
-      <td>21.0</td>
-      <td>4.0</td>
-    </tr>
-    <tr>
-      <th>小牛</th>
-      <td>0.4620</td>
-      <td>7.0</td>
-      <td>10.0</td>
-      <td>29.0</td>
-      <td>0.526</td>
-      <td>19.0</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>尼克斯</th>
-      <td>0.3850</td>
-      <td>10.0</td>
-      <td>12.0</td>
-      <td>37.0</td>
-      <td>0.444</td>
-      <td>27.0</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>灰熊</th>
-      <td>0.3395</td>
-      <td>8.0</td>
-      <td>9.5</td>
-      <td>30.0</td>
-      <td>0.420</td>
-      <td>22.5</td>
-      <td>4.5</td>
-    </tr>
-    <tr>
-      <th>爵士</th>
-      <td>0.8750</td>
-      <td>13.0</td>
-      <td>19.0</td>
-      <td>56.0</td>
-      <td>0.760</td>
-      <td>25.0</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>猛龙</th>
-      <td>0.2730</td>
-      <td>11.0</td>
-      <td>8.0</td>
-      <td>38.0</td>
-      <td>0.320</td>
-      <td>25.0</td>
-      <td>6.0</td>
-    </tr>
-    <tr>
-      <th>鹈鹕</th>
-      <td>0.4000</td>
-      <td>17.0</td>
-      <td>8.0</td>
-      <td>26.0</td>
-      <td>0.500</td>
-      <td>16.0</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th rowspan="11" valign="top">客</th>
-      <th>76人</th>
-      <td>0.2500</td>
-      <td>13.0</td>
-      <td>10.0</td>
-      <td>27.0</td>
-      <td>0.500</td>
-      <td>20.0</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>勇士</th>
-      <td>0.4440</td>
-      <td>11.0</td>
-      <td>10.0</td>
-      <td>27.0</td>
-      <td>0.435</td>
-      <td>23.0</td>
-      <td>6.0</td>
-    </tr>
-    <tr>
-      <th>国王</th>
-      <td>0.2860</td>
-      <td>9.0</td>
-      <td>8.0</td>
-      <td>27.0</td>
-      <td>0.381</td>
-      <td>21.0</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>太阳</th>
-      <td>0.5450</td>
-      <td>7.0</td>
-      <td>12.0</td>
-      <td>48.0</td>
-      <td>0.545</td>
-      <td>22.0</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>尼克斯</th>
-      <td>0.3530</td>
-      <td>9.0</td>
-      <td>9.0</td>
-      <td>31.0</td>
-      <td>0.391</td>
-      <td>23.0</td>
-      <td>5.0</td>
-    </tr>
-    <tr>
-      <th>开拓者</th>
-      <td>0.5710</td>
-      <td>3.0</td>
-      <td>16.0</td>
-      <td>48.0</td>
-      <td>0.552</td>
-      <td>29.0</td>
-      <td>8.0</td>
-    </tr>
-    <tr>
-      <th>步行者</th>
-      <td>0.2500</td>
-      <td>15.0</td>
-      <td>9.0</td>
-      <td>26.0</td>
-      <td>0.429</td>
-      <td>21.0</td>
-      <td>5.0</td>
-    </tr>
-    <tr>
-      <th>灰熊</th>
-      <td>0.3610</td>
-      <td>7.5</td>
-      <td>7.5</td>
-      <td>24.5</td>
-      <td>0.383</td>
-      <td>19.5</td>
-      <td>4.5</td>
-    </tr>
-    <tr>
-      <th>爵士</th>
-      <td>0.3330</td>
-      <td>3.0</td>
-      <td>8.0</td>
-      <td>29.0</td>
-      <td>0.421</td>
-      <td>19.0</td>
-      <td>5.0</td>
-    </tr>
-    <tr>
-      <th>老鹰</th>
-      <td>0.5450</td>
-      <td>11.0</td>
-      <td>8.0</td>
-      <td>29.0</td>
-      <td>0.533</td>
-      <td>15.0</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>黄蜂</th>
-      <td>0.4000</td>
-      <td>11.0</td>
-      <td>8.0</td>
-      <td>27.0</td>
-      <td>0.444</td>
-      <td>18.0</td>
-      <td>10.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置values的值 筛选所需的列数据 </span></span><br><span class="line">pd.pivot_table(df,index=[<span class="string">u&#x27;主客场&#x27;</span>,<span class="string">u&#x27;胜负&#x27;</span>],values=[<span class="string">u&#x27;得分&#x27;</span>,<span class="string">u&#x27;助攻&#x27;</span>,<span class="string">u&#x27;篮板&#x27;</span>,<span class="string">u&#x27;投篮数&#x27;</span>])</span><br></pre></td></tr></table></figure>
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th></th>
-      <th>助攻</th>
-      <th>得分</th>
-      <th>投篮数</th>
-      <th>篮板</th>
-    </tr>
-    <tr>
-      <th>主客场</th>
-      <th>胜负</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th rowspan="2" valign="top">主</th>
-      <th>胜</th>
-      <td>10.555556</td>
-      <td>34.222222</td>
-      <td>21.222222</td>
-      <td>5.444444</td>
-    </tr>
-    <tr>
-      <th>负</th>
-      <td>8.666667</td>
-      <td>29.666667</td>
-      <td>22.000000</td>
-      <td>5.000000</td>
-    </tr>
-    <tr>
-      <th rowspan="2" valign="top">客</th>
-      <th>胜</th>
-      <td>9.000000</td>
-      <td>32.000000</td>
-      <td>21.083333</td>
-      <td>4.916667</td>
-    </tr>
-    <tr>
-      <th>负</th>
-      <td>8.000000</td>
-      <td>20.000000</td>
-      <td>19.000000</td>
-      <td>4.000000</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用aggfunc 函数计算数据均值</span></span><br><span class="line">pd.pivot_table(df,index=[<span class="string">u&#x27;对手&#x27;</span>,<span class="string">u&#x27;胜负&#x27;</span>],values=[<span class="string">u&#x27;得分&#x27;</span>,<span class="string">u&#x27;助攻&#x27;</span>,<span class="string">u&#x27;篮板&#x27;</span>],aggfunc=[np.mean],fill_value=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead tr th {
-        text-align: left;
-    }
-
-    .dataframe thead tr:last-of-type th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th colspan="3" halign="left">mean</th>
-    </tr>
-    <tr>
-      <th></th>
-      <th></th>
-      <th>助攻</th>
-      <th>得分</th>
-      <th>篮板</th>
-    </tr>
-    <tr>
-      <th>对手</th>
-      <th>胜负</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th rowspan="2" valign="top">76人</th>
-      <th>胜</th>
-      <td>13.0</td>
-      <td>27.0</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>负</th>
-      <td>7.0</td>
-      <td>29.0</td>
-      <td>4.0</td>
-    </tr>
-    <tr>
-      <th>勇士</th>
-      <th>胜</th>
-      <td>11.0</td>
-      <td>27.0</td>
-      <td>6.0</td>
-    </tr>
-    <tr>
-      <th>国王</th>
-      <th>胜</th>
-      <td>9.0</td>
-      <td>27.0</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>太阳</th>
-      <th>胜</th>
-      <td>7.0</td>
-      <td>48.0</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>小牛</th>
-      <th>胜</th>
-      <td>7.0</td>
-      <td>29.0</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>尼克斯</th>
-      <th>胜</th>
-      <td>9.5</td>
-      <td>34.0</td>
-      <td>3.5</td>
-    </tr>
-    <tr>
-      <th>开拓者</th>
-      <th>胜</th>
-      <td>3.0</td>
-      <td>48.0</td>
-      <td>8.0</td>
-    </tr>
-    <tr>
-      <th>掘金</th>
-      <th>胜</th>
-      <td>9.0</td>
-      <td>21.0</td>
-      <td>8.0</td>
-    </tr>
-    <tr>
-      <th>步行者</th>
-      <th>胜</th>
-      <td>12.5</td>
-      <td>27.5</td>
-      <td>6.5</td>
-    </tr>
-    <tr>
-      <th>湖人</th>
-      <th>胜</th>
-      <td>9.0</td>
-      <td>36.0</td>
-      <td>4.0</td>
-    </tr>
-    <tr>
-      <th rowspan="2" valign="top">灰熊</th>
-      <th>胜</th>
-      <td>7.5</td>
-      <td>33.5</td>
-      <td>4.5</td>
-    </tr>
-    <tr>
-      <th>负</th>
-      <td>8.0</td>
-      <td>21.0</td>
-      <td>4.5</td>
-    </tr>
-    <tr>
-      <th>爵士</th>
-      <th>胜</th>
-      <td>8.0</td>
-      <td>42.5</td>
-      <td>3.5</td>
-    </tr>
-    <tr>
-      <th>猛龙</th>
-      <th>负</th>
-      <td>11.0</td>
-      <td>38.0</td>
-      <td>6.0</td>
-    </tr>
-    <tr>
-      <th>篮网</th>
-      <th>胜</th>
-      <td>8.0</td>
-      <td>37.0</td>
-      <td>10.0</td>
-    </tr>
-    <tr>
-      <th>老鹰</th>
-      <th>胜</th>
-      <td>11.0</td>
-      <td>29.0</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>骑士</th>
-      <th>胜</th>
-      <td>13.0</td>
-      <td>35.0</td>
-      <td>11.0</td>
-    </tr>
-    <tr>
-      <th>鹈鹕</th>
-      <th>胜</th>
-      <td>17.0</td>
-      <td>26.0</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>黄蜂</th>
-      <th>胜</th>
-      <td>11.0</td>
-      <td>27.0</td>
-      <td>10.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+        <p><strong>离散程度的度量</strong></p>
+<p><strong>离散程度反映各变量值远离其中心值的程度</strong></p>
+<hr>
+<p><strong>分类数据：异众比率</strong></p>
+<p>异众比是指非众数的频数占总频数的比例</p>
+<p>$ V_r = \frac {\sum f_i-f_m}{\sum f_i} =1- \frac {f_m}{\sum f_i}$</p>
+<p>式中，$ \sum f_i $为变量值的总频数；$ f_m $为众数组的频数</p>
+<p>异众比率主要用于衡量众数对一组数据的代表程度。</p>
+<p>异众比率越大，说明非众数组频数占比大，众数的代表性被削弱了。</p>
+<p>异众比率越小，说明非众数组频数占比小，众数的代表性强。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">&#x27;ignore&#x27;</span>)</span><br><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> mode</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#举例  假设调查50个人，购买碳酸饮料的15个人为众数组频数，其他人购买别的饮料类型</span></span><br><span class="line"><span class="comment">#求异众比</span></span><br><span class="line">v= (<span class="number">50</span>-<span class="number">15</span>) / <span class="number">50</span> </span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;percent:&#123;:.0%&#125;&#x27;</span>.<span class="built_in">format</span>(v))</span><br></pre></td></tr></table></figure>
+<pre><code>percent:70%
+</code></pre><p><strong>顺序数据：四分位差</strong></p>
+<p>四分位差是上四分位数与下四分位数之差</p>
+<p>$Q_d = Q_U-Q_L$</p>
+<p>四分位差反应了中间50%数据的离散程度，数值越小，中间数据越集中</p>
+<p>数值类型数据也可以计算四分位差</p>
+<p>四分位差不受极值影响</p>
+<hr>
+<p><strong>数值型数据：</strong></p>
+<p>1.极差</p>
+<p>一组数据最大值与最小值之差为极差，也称为全距。</p>
+<p>公式为：$ R = max(x_i) - min(x_i) $</p>
+<p>$ max(x_i) \quad 和 \quad min(x_i) $ 分别为最大值与最小值</p>
+<p>极差容易受极端值影响，而且由于只利用一组数据两端信息，不能反映中间数据的分散状况。</p>
+<p>2.平均差</p>
+<p>平均差是各变量值与其平均数离差绝对值的平均数</p>
+<p>**未分组数据平均差</p>
+<script type="math/tex; mode=display">M_d = \frac{\sum_{i=1}^n |x_i - \overline{x} |}{n}</script><p>**分组数据平均差</p>
+<script type="math/tex; mode=display">M_d = \frac{\sum_{i=1}^k |M_i - \overline{x} |  f_i}{n}</script><p>其中$M_i$代表数据分组的组中值, $f_i$代表分组中数据频数</p>
+<p>平均差越大 数据离散程度越大，反之离散程度越小。</p>
+<p>平均差以平均数为中心，反应每个数据与平均数的平均差异程度。</p>
+<p>实际很少用</p>
+<p><strong>方差</strong></p>
+<p>方差是各变量值与其平均数离差平方的平均数</p>
+<p>未分组数据样本方差：<script type="math/tex">s^2 = \frac{\sum_{i=1}^n(x_i - \overline{x})^2}{n-1}</script></p>
+<p>分组数据样本方差：<script type="math/tex">s^2 = \frac{\sum_{i=1}^k(M_i - \overline{x})^2 f_i}{n-1}</script></p>
+<p>样本方差是除以n-1个自由度</p>
+<p>总体方差直接除以n就行</p>
+<p>方差能较好的反映出数据的离散程度，是常用的离散程度测度值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#python计算方差</span></span><br><span class="line">a = np.array([[<span class="number">1</span>,<span class="number">2</span>],[<span class="number">3</span>,<span class="number">4</span>]])</span><br><span class="line">a</span><br></pre></td></tr></table></figure>
+<pre><code>array([[1, 2],
+       [3, 4]])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.var(a,axis=<span class="number">0</span>) <span class="comment">#按每一列计算方差  var函数内部是除以 默认自由度n  不是除以n-1</span></span><br></pre></td></tr></table></figure>
+<pre><code>array([1., 1.])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.var(a,axis=<span class="number">1</span>)<span class="comment">#按每行计算方差</span></span><br></pre></td></tr></table></figure>
+<pre><code>array([0.25, 0.25])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.var(a) <span class="comment">#把矩阵展开计算总方差</span></span><br></pre></td></tr></table></figure>
+<pre><code>1.25
+</code></pre><p><strong>标准差</strong></p>
+<p>方差求平方根就是标准差</p>
+<p>未分组数据：<script type="math/tex">s = \sqrt{\frac{\sum_{i=1}^n(x_i - \overline{x})^2}{n-1}}</script></p>
+<p>分组数据：<script type="math/tex">s^2 = \sqrt{\frac{\sum_{i=1}^k(M_i - \overline{x})^2  f_i}{n-1}}</script></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#numpy求标准差</span></span><br><span class="line">a = np.array([[<span class="number">1</span>,<span class="number">2</span>],[<span class="number">3</span>,<span class="number">4</span>]])</span><br><span class="line"></span><br><span class="line">np.std(a,axis=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>array([1., 1.])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.std(a,axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>array([0.5, 0.5])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.std(a)</span><br></pre></td></tr></table></figure>
+<pre><code>1.118033988749895
+</code></pre><p><strong>标准分数 又叫Z分数</strong></p>
+<p>Z分数是变量值与其平均数的差除以标准差后的值</p>
+<p>标准Z分数为：</p>
+<script type="math/tex; mode=display">z_i = \frac{x_i - \overline{x}}{s}</script><p>标准分数给出了一组数据中各数据相对位置。例如某个数据的标准分数为-1.5，说明这个数据比平均数低1.5个标准差。反之是+1.5，高与平均数1.5个标准差。</p>
+<p>z分数具有均值为0，标准差为1的特性，它只是将数据进行了线性变换，没有改变数据分布，是对数据进行标准化处理</p>
+<p>机器学习中常用来标准化输入数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#numpy </span></span><br><span class="line">a = np.array([<span class="number">25</span>,<span class="number">28</span>,<span class="number">31</span>,<span class="number">34</span>,<span class="number">37</span>,<span class="number">40</span>,<span class="number">43</span>])</span><br><span class="line"></span><br><span class="line">z = (a - np.mean(a)) / np.std(a)</span><br><span class="line">z</span><br></pre></td></tr></table></figure>
+<pre><code>array([-1.5, -1. , -0.5,  0. ,  0.5,  1. ,  1.5])
+</code></pre><p><strong>离散系数</strong></p>
+<p>离散系数也称为变异系数，它是一组数据的标准差与其相应平均数之比</p>
+<script type="math/tex; mode=display">cv = \frac{s}{\overline{x}}</script><p>离散系数主要用于比较不同样本数据，或者量纲不同变量的离散程度，离散系数越大，数据离散程度越大，反之离散程度越小。</p>
 
       
     </div>
@@ -1047,13 +403,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a  href="/2021/09/22/%E6%95%B0%E6%8D%AE%E9%80%8F%E8%A7%86%E8%A1%A8/">数据透视表</a></p>
+        <p><span>本文标题:</span><a  href="/2021/09/22/%E7%A6%BB%E6%95%A3%E7%A8%8B%E5%BA%A6%E5%BA%A6%E9%87%8F/">数据离散程度的度量</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问  的个人博客"></a></p>
-        <p><span>发布时间:</span>2021年09月22日 - 21时07分</p>
-        <p><span>最后更新:</span>2021年09月22日 - 22时07分</p>
+        <p><span>发布时间:</span>2021年09月22日 - 22时43分</p>
+        <p><span>最后更新:</span>2021年09月22日 - 22时53分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2021/09/22/%E6%95%B0%E6%8D%AE%E9%80%8F%E8%A7%86%E8%A1%A8/" title="数据透视表">https://lc1-11.github.io/2021/09/22/%E6%95%B0%E6%8D%AE%E9%80%8F%E8%A7%86%E8%A1%A8/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://lc1-11.github.io/2021/09/22/%E6%95%B0%E6%8D%AE%E9%80%8F%E8%A7%86%E8%A1%A8/　　作者: " title=""></span>
+            <span>原始链接:</span><a class="post-url" href="/2021/09/22/%E7%A6%BB%E6%95%A3%E7%A8%8B%E5%BA%A6%E5%BA%A6%E9%87%8F/" title="数据离散程度的度量">https://lc1-11.github.io/2021/09/22/%E7%A6%BB%E6%95%A3%E7%A8%8B%E5%BA%A6%E5%BA%A6%E9%87%8F/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://lc1-11.github.io/2021/09/22/%E7%A6%BB%E6%95%A3%E7%A8%8B%E5%BA%A6%E5%BA%A6%E9%87%8F/　　作者: " title=""></span>
         </p>
         <p>
             <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
@@ -1064,15 +420,20 @@
 
 <nav id="article-nav">
   
-    <a  href="/2021/09/22/sampling/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a  href="/2021/09/22/%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%AD%E8%B6%8B%E5%8A%BF%E5%BA%A6%E9%87%8F/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          抽样误差
+          数据集中趋势度量
         
       </div>
     </a>
   
+  
+    <a  href="/2021/09/22/%E5%93%81%E8%B4%A8%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">品质数据处理</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
   
 </nav>
 
@@ -1155,13 +516,15 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a  href="/2021/09/22/sampling/" title="上一篇: 抽样误差">
+            <a  href="/2021/09/22/%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%AD%E8%B6%8B%E5%8A%BF%E5%BA%A6%E9%87%8F/" title="上一篇: 数据集中趋势度量">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a  href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a  href="/2021/09/22/%E5%93%81%E8%B4%A8%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" title="下一篇: 品质数据处理">
+                <i class="fa fa-angle-right"></i>
+            </a>
         
     </div>
     <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2021/09/22/%E6%95%B0%E5%80%BC%E5%9E%8B%E6%95%B0%E6%8D%AE/">数值型数据处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/22/%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%AD%E8%B6%8B%E5%8A%BF%E5%BA%A6%E9%87%8F/">数据集中趋势度量</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/22/%E7%A6%BB%E6%95%A3%E7%A8%8B%E5%BA%A6%E5%BA%A6%E9%87%8F/">数据离散程度的度量</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/22/%E5%93%81%E8%B4%A8%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">品质数据处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/22/%E6%80%BB%E4%BD%93%E6%96%B9%E5%B7%AE%E4%B8%8E%E5%9D%87%E5%80%BC%E5%8C%BA%E9%97%B4%E4%BC%B0%E8%AE%A1/">总体均值与方差区间估计</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/22/%E6%80%BB%E4%BD%93%E5%9D%87%E5%80%BC%E5%8C%BA%E9%97%B4%E4%BC%B0%E8%AE%A1/">总体均值区间估计</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/22/sampling/">抽样误差</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/22/%E6%95%B0%E6%8D%AE%E9%80%8F%E8%A7%86%E8%A1%A8/">数据透视表</a></li></ul>
