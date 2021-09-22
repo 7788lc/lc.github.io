@@ -204,7 +204,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/python%E6%95%B0%E6%8D%AE%E9%80%8F%E8%A7%86%E8%A1%A8/" style="font-size: 10px;">python数据透视表</a> <a href="/tags/%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/" style="font-size: 20px;">参数估计</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%A6%E9%87%8F/" style="font-size: 20px;">数据度量</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E8%AF%AF%E5%B7%AE/" style="font-size: 10px;">数据误差</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/" style="font-size: 20px;">数据预处理</a>
+                        <a href="/tags/python%E6%95%B0%E6%8D%AE%E9%80%8F%E8%A7%86%E8%A1%A8/" style="font-size: 10px;">python数据透视表</a> <a href="/tags/%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/" style="font-size: 15px;">参数估计</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%A6%E9%87%8F/" style="font-size: 20px;">数据度量</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E8%AF%AF%E5%B7%AE/" style="font-size: 10px;">数据误差</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/" style="font-size: 15px;">数据预处理</a>
                     </div>
                 </section>
                 
@@ -585,6 +585,7 @@ Name: Age, dtype: int64
 <p>方差是各变量值与其平均数离差平方的平均数</p>
 <p>未分组数据样本方差：<script type="math/tex">s^2 = \frac{\sum_{i=1}^n(x_i - \overline{x})^2}{n-1}</script></p>
 <p>分组数据样本方差：<script type="math/tex">s^2 = \frac{\sum_{i=1}^k(M_i - \overline{x})^2 f_i}{n-1}</script></p>
+<p>其中$M_i$代表数据分组的组中值, $f_i$代表分组中数据频数</p>
 <p>样本方差是除以n-1个自由度</p>
 <p>总体方差直接除以n就行</p>
 <p>方差能较好的反映出数据的离散程度，是常用的离散程度测度值</p>
@@ -619,6 +620,313 @@ Name: Age, dtype: int64
 <p>离散系数也称为变异系数，它是一组数据的标准差与其相应平均数之比</p>
 <script type="math/tex; mode=display">cv = \frac{s}{\overline{x}}</script><p>离散系数主要用于比较不同样本数据，或者量纲不同变量的离散程度，离散系数越大，数据离散程度越大，反之离散程度越小。</p>
 
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/%E7%BB%9F%E8%AE%A1/">统计</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%A6%E9%87%8F/" rel="tag">数据度量</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-偏态与峰态" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2021/09/22/%E5%81%8F%E6%80%81%E4%B8%8E%E5%B3%B0%E6%80%81/" class="article-date">
+      <time datetime="2021-09-22T14:43:29.000Z" itemprop="datePublished">2021-09-22</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2021/09/22/%E5%81%8F%E6%80%81%E4%B8%8E%E5%B3%B0%E6%80%81/">偏态与峰态的度量</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><strong>偏态与峰态的度量</strong></p>
+<p>偏态和峰态是对数据分布形状的测度，通过它们可以知道数据分布形状是否对称,偏斜程度以及分布的扁平程度等。</p>
+<p><strong>偏态</strong></p>
+<p>偏态相对与正态分布而言，偏态可以体现异常值的分布方向。</p>
+<p>很多统计模型假设前提是数据符合正态分布，数据如果严重偏斜，会影响模型输出结果，所以在输入模型前要观察数据的偏度，以免影响模型输出结果</p>
+<p>测度偏态的统计量是偏态系数</p>
+<p>偏度系数大于0，说明数据右偏或正偏</p>
+<p>偏度系数小于0，说明数据左偏或负偏</p>
+<p>偏度系数等于0，说明数据分布是对称的</p>
+<p>未分组数据 <script type="math/tex">SK= \frac{n\sum{ (x_i - \overline{x}) ^3}}{(n-1)(n-2)s^3}</script></p>
+<p>$s^3$是样本标准差的3次方</p>
+<p>分组数据  <script type="math/tex">SK= \frac{\sum _{i=1}^k(M_i-\overline{x}) ^3 f_i }{ns^3}</script></p>
+<p>其中$M_i$是分组数据的组中值</p>
+<p>处理偏态数据常用方法：</p>
+<p>1.取对数</p>
+<p>2.指数变换法</p>
+<p>3.幂变换</p>
+<p>4.平方根变换</p>
+<p>5.box-cox变换</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">&#x27;ignore&#x27;</span>)</span><br><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> mode</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> skew</span><br><span class="line">sns.<span class="built_in">set</span>(style=<span class="string">&#x27;white&#x27;</span>,context=<span class="string">&#x27;notebook&#x27;</span>,palette=<span class="string">&#x27;muted&#x27;</span>)</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">train = pd.read_csv(<span class="string">&#x27;train.csv&#x27;</span>)</span><br><span class="line">copy = train.sample(<span class="number">200</span>)</span><br><span class="line">copy</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>626</th>
+      <td>627</td>
+      <td>0</td>
+      <td>2</td>
+      <td>Kirkland, Rev. Charles Leonard</td>
+      <td>male</td>
+      <td>57.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>219533</td>
+      <td>12.3500</td>
+      <td>NaN</td>
+      <td>Q</td>
+    </tr>
+    <tr>
+      <th>481</th>
+      <td>482</td>
+      <td>0</td>
+      <td>2</td>
+      <td>Frost, Mr. Anthony Wood "Archie"</td>
+      <td>male</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>239854</td>
+      <td>0.0000</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>850</th>
+      <td>851</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Andersson, Master. Sigvard Harald Elias</td>
+      <td>male</td>
+      <td>4.0</td>
+      <td>4</td>
+      <td>2</td>
+      <td>347082</td>
+      <td>31.2750</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>135</th>
+      <td>136</td>
+      <td>0</td>
+      <td>2</td>
+      <td>Richard, Mr. Emile</td>
+      <td>male</td>
+      <td>23.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>SC/PARIS 2133</td>
+      <td>15.0458</td>
+      <td>NaN</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>230</th>
+      <td>231</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Harris, Mrs. Henry Birkhardt (Irene Wallach)</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>36973</td>
+      <td>83.4750</td>
+      <td>C83</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>547</th>
+      <td>548</td>
+      <td>1</td>
+      <td>2</td>
+      <td>Padro y Manent, Mr. Julian</td>
+      <td>male</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>SC/PARIS 2146</td>
+      <td>13.8625</td>
+      <td>NaN</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>524</th>
+      <td>525</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Kassem, Mr. Fared</td>
+      <td>male</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2700</td>
+      <td>7.2292</td>
+      <td>NaN</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>468</th>
+      <td>469</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Scanlan, Mr. James</td>
+      <td>male</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>36209</td>
+      <td>7.7250</td>
+      <td>NaN</td>
+      <td>Q</td>
+    </tr>
+    <tr>
+      <th>858</th>
+      <td>859</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Baclini, Mrs. Solomon (Latifa Qurban)</td>
+      <td>female</td>
+      <td>24.0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>2666</td>
+      <td>19.2583</td>
+      <td>NaN</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>507</th>
+      <td>508</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Bradley, Mr. George ("George Arthur Brayton")</td>
+      <td>male</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>111427</td>
+      <td>26.5500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
+<p>200 rows × 12 columns</p>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#以泰坦尼克数据为例，查看票价的偏度</span></span><br><span class="line">skew(copy[<span class="string">&#x27;Fare&#x27;</span>])</span><br><span class="line"><span class="comment">#抽取的样本中票价偏度为右偏，数据偏度高度正偏</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>3.2250338215549292
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用直方图观察</span></span><br><span class="line"><span class="comment">#抽取的样本中票价偏度为右偏，数据偏度高度正偏，数据集中在左侧</span></span><br><span class="line">p = sns.distplot(copy[<span class="string">&#x27;Fare&#x27;</span>],label=<span class="string">&#x27;skewness%.2f&#x27;</span>)</span><br><span class="line">p.legend(loc=<span class="string">&#x27;best&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;matplotlib.legend.Legend at 0x1624baad390&gt;
+</code></pre><p><img src="/.io//output_3_1.png" alt="png"></p>
+<p><strong>峰态及其测度</strong></p>
+<p>峰态是与正态分布而言，它是对数据分布平峰或尖峰程度的测试</p>
+<p>正态分布峰度系数为3</p>
+<p>测度峰态的统计量是峰度系数</p>
+<p>未分组数据：</p>
+<script type="math/tex; mode=display">K = \frac{n(n+1)\sum(x_i-\overline{x})^4-3\big[\sum(x_i-\overline{x})^2\big]^2(n-1)} {(n-1)(n-2)(n-3)s^4}</script><p>分组数据：</p>
+<script type="math/tex; mode=display">K=\frac{\sum_{i=1}^k(M_i-\overline{x})^4f_i}{ns^4} -3</script><p>减去3是为了使比较标准变为0，因为正态分布峰度系数为3</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scipy.stats <span class="keyword">as</span> st</span><br><span class="line"><span class="comment">#标准正态分布的峰度系数</span></span><br><span class="line">s = np.random.normal(size=<span class="number">1000</span>)</span><br><span class="line"><span class="comment">#使用pearson定义  不减去3</span></span><br><span class="line">st.kurtosis(s,fisher=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>3.0323313898498414
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#使用默认fisher定义  减去3</span></span><br><span class="line">st.kurtosis(s)</span><br></pre></td></tr></table></figure>
+<pre><code>0.34768257633927524
+</code></pre>
       
     </div>
     
