@@ -7,20 +7,22 @@
   
   
   
-  <title>数据集中趋势度量 | neo</title>
+  <title>随机事件 | neo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="集中趋势的度量 集中趋势是一组数据向某一中心值靠拢的程度，反应了一组数据中心点的位置所在。 1.分类数据：众数 众数是一组数据中出现次数最多的变量值 众数主要用于测度分类数据的集中趋势 众数不受极端值影响，如果没有明显的集中趋势或最高峰点，众数可能不存在 可以有多个众数 数据量少的情况不适合使用众数 12345678from scipy.stats import modeimport numpy">
+  <meta name="description" content="随机事件及其概率 基本概念： *样本空间 对于随机试验，其结果不可预测，但是假设所有可能的结果集合是已知的，那么所有可能的结果构成的集合，称为该随机试验的样本空间。一般用大写字母S表示 常见例子： *抛两枚硬币，考察哪枚硬币正面朝上，样本空间包含下面四种结果： S &#x3D; {(H,H),(H,T),(T,H),(T,T)} (H,H)表示两枚硬币都是正面朝上,(H,T)表示第一枚正面朝上，第二枚反面朝">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据集中趋势度量">
-<meta property="og:url" content="https://lc1-11.github.io/2021/09/22/%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%AD%E8%B6%8B%E5%8A%BF%E5%BA%A6%E9%87%8F/index.html">
+<meta property="og:title" content="随机事件">
+<meta property="og:url" content="https://lc1-11.github.io/2021/09/22/%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6/index.html">
 <meta property="og:site_name" content="neo">
-<meta property="og:description" content="集中趋势的度量 集中趋势是一组数据向某一中心值靠拢的程度，反应了一组数据中心点的位置所在。 1.分类数据：众数 众数是一组数据中出现次数最多的变量值 众数主要用于测度分类数据的集中趋势 众数不受极端值影响，如果没有明显的集中趋势或最高峰点，众数可能不存在 可以有多个众数 数据量少的情况不适合使用众数 12345678from scipy.stats import modeimport numpy">
+<meta property="og:description" content="随机事件及其概率 基本概念： *样本空间 对于随机试验，其结果不可预测，但是假设所有可能的结果集合是已知的，那么所有可能的结果构成的集合，称为该随机试验的样本空间。一般用大写字母S表示 常见例子： *抛两枚硬币，考察哪枚硬币正面朝上，样本空间包含下面四种结果： S &#x3D; {(H,H),(H,T),(T,H),(T,T)} (H,H)表示两枚硬币都是正面朝上,(H,T)表示第一枚正面朝上，第二枚反面朝">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lc1-11.github.io/.io//output_5_1.png">
 <meta property="article:published_time" content="2021-09-22T14:43:29.000Z">
-<meta property="article:modified_time" content="2021-09-22T14:48:10.208Z">
+<meta property="article:modified_time" content="2021-09-23T01:29:33.091Z">
 <meta property="article:author" content="a joker">
-<meta property="article:tag" content="数据度量">
+<meta property="article:tag" content="随机事件">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lc1-11.github.io/.io//output_5_1.png">
   
     <link rel="alternative" href="/atom.xml" title="neo" type="application/atom+xml">
   
@@ -285,10 +287,10 @@
         </header>
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-数据集中趋势度量" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-随机事件" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2021/09/22/%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%AD%E8%B6%8B%E5%8A%BF%E5%BA%A6%E9%87%8F/" class="article-date">
+      <a  href="/2021/09/22/%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6/" class="article-date">
       <time datetime="2021-09-22T14:43:29.000Z" itemprop="datePublished">2021-09-22</time>
 </a>
 
@@ -303,7 +305,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      数据集中趋势度量
+      随机事件
     </h1>
   
 
@@ -313,13 +315,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/%E7%BB%9F%E8%AE%A1/">统计</a>
+    <a class="article-category-link" href="/categories/%E6%A6%82%E7%8E%87/">概率</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%A6%E9%87%8F/" rel="tag">数据度量</a></li></ul>
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6/" rel="tag">随机事件</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -329,56 +331,254 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><strong>集中趋势的度量</strong></p>
-<p>集中趋势是一组数据向某一中心值靠拢的程度，反应了一组数据中心点的位置所在。</p>
-<p>1.分类数据：众数</p>
-<p>众数是一组数据中出现次数最多的变量值</p>
-<p>众数主要用于测度分类数据的集中趋势</p>
-<p>众数不受极端值影响，如果没有明显的集中趋势或最高峰点，众数可能不存在</p>
-<p>可以有多个众数</p>
-<p>数据量少的情况不适合使用众数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> mode</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">&#x27;ignore&#x27;</span>)</span><br><span class="line"><span class="comment">#使用scipy 库的mode函数求众数</span></span><br><span class="line"><span class="built_in">list</span> = [<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;3&#x27;</span>,<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;2&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(mode(<span class="built_in">list</span>))</span><br><span class="line"><span class="built_in">print</span>(mode(<span class="built_in">list</span>)[<span class="number">0</span>][<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
-<pre><code>ModeResult(mode=array([&#39;2&#39;], dtype=&#39;&lt;U1&#39;), count=array([3]))
-2
-</code></pre><p>顺序数据：中位数和分位数</p>
-<p>中位数是一组数据排序后处于中间位置的变量值</p>
-<p>适用于偏度较大的数据</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#求中位数  元素个数奇数的情况 n+1 / 2 位置的值就是中位数</span></span><br><span class="line"><span class="comment">#median函数会自动排序</span></span><br><span class="line">odd = np.array([<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>])</span><br><span class="line"><span class="built_in">print</span>(np.median(odd))</span><br><span class="line"></span><br><span class="line"><span class="comment">#n为偶数的情况 中间两个值之和除以2</span></span><br><span class="line">even = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>])</span><br><span class="line"><span class="comment">#3+4 /2</span></span><br><span class="line"><span class="built_in">print</span>(np.median(even))</span><br></pre></td></tr></table></figure>
-<pre><code>3.0
-3.5
-</code></pre><p>四分位数</p>
-<p>通过三个点将数据分为4部分 ——25%——50%——75%——</p>
-<p>常用算法有几种 但是差别不大</p>
-<p>例如：</p>
-<p>第一分位 Q1=(n+1)×0.25</p>
-<p>第二分位 Q 2 = ( n + 1 ) × 0.5</p>
-<p>第三分位 Q 3 = ( n + 1 ) × 0.75 </p>
-<p>其中第一分位与第三分位数中间包含了50%的数据</p>
-<p>numpy percetile计算方法：</p>
-<p>位置<br>Q1=1+(n−1)×0.25</p>
-<p>位置<br>Q2=1+(n−1)×0.5</p>
-<p>位置<br>Q3=1+(n−1)×0.75</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#percentile函数求四分卫数  自动排序</span></span><br><span class="line">p = np.array([<span class="number">8</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(np.percentile(p,(<span class="number">25</span>)))</span><br><span class="line"><span class="built_in">print</span>(np.percentile(p,(<span class="number">50</span>)))</span><br><span class="line"><span class="built_in">print</span>(np.percentile(p,(<span class="number">75</span>)))</span><br></pre></td></tr></table></figure>
-<pre><code>2.75
-4.5
-6.25
-</code></pre><p>数值型数据：平均数</p>
-<p>平均数也称为均值，它是一组数据相加后除以数据总数得到的结果</p>
-<p>平均数不适用于分类数据和顺序数据，并且容易受到极大值，极小值影响</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#求平均数</span></span><br><span class="line">m = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br><span class="line">np.mean(m)</span><br><span class="line"></span><br><span class="line"><span class="comment">#极大值对平均数的影响</span></span><br><span class="line">m1 = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">10</span>])</span><br><span class="line">np.mean(m1)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<pre><code>4.0
-</code></pre><p>加权平均数：</p>
-<p>一组数据中每个数据具有权重的情况下使用加权平均数计算均值</p>
-<p>权重一般计算方法是计算各数值出现的频率</p>
-<p>average 函数计算加权方法 </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#average 函数计算加权方法</span></span><br><span class="line"><span class="comment">#(1*3 + 2*3 + 3*4) / 3+3+4</span></span><br><span class="line">m = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">np.average(m,weights=[<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br></pre></td></tr></table></figure>
-<pre><code>2.1
-</code></pre><p>几何平均数</p>
-<p>1.n个变量值乘积的n次方</p>
-<script type="math/tex; mode=display">G =\sqrt[n]{X_1 \times X_2 \times \cdot \cdot \cdot \times X_n } = \sqrt[n]{\prod_{i=1}^n X_i}</script><p>2.几何平均数主要用于计算平均比率，变量值本身是比率的形式，用几何平均法比较合理。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> gmean</span><br><span class="line">l = [<span class="number">1.045</span>,<span class="number">1.021</span>,<span class="number">1.255</span>,<span class="number">1.019</span>]</span><br><span class="line"></span><br><span class="line">gmean(l)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<pre><code>1.0807866848335959
-</code></pre>
+        <p><strong>随机事件及其概率</strong></p>
+<p>基本概念：</p>
+<p><strong>*样本空间</strong></p>
+<p>对于随机试验，其结果不可预测，但是假设所有可能的结果集合是已知的，那么所有可能的结果构成的集合，称为该随机试验的样本空间。一般用大写字母S表示</p>
+<p>常见例子：</p>
+<p>*抛两枚硬币，考察哪枚硬币正面朝上，样本空间包含下面四种结果：</p>
+<p>S = {(H,H),(H,T),(T,H),(T,T)}</p>
+<p>(H,H)表示两枚硬币都是正面朝上,(H,T)表示第一枚正面朝上，第二枚反面朝上，其他类推。</p>
+<p>*新生婴儿性别，所有可能结果构成样本空间</p>
+<p>S = {G,B}</p>
+<p>G—女孩，B—男孩</p>
+<p><strong>*事件</strong></p>
+<p>样本空间的任一子集E称为事件，事件就是有实验某些可能结果组成的<strong>集合</strong></p>
+<p>例如</p>
+<p>1.抛两枚硬币，第一枚硬币正面朝上有两种可能结果(H,H),(H,T).这两个可能的结果构成“第一枚硬币正面朝上”这个事件:</p>
+<p>E = {(H,H),(H,T)}</p>
+<p>2.新生婴儿是个女孩这个结果构成事件：</p>
+<p>E={G}</p>
+<p>实验的结果包含在E中，就称为<strong>事件发生。</strong></p>
+<p><strong>*随机事件</strong></p>
+<p>样本空间S的子集E叫做随机事件，简称事件，随机事件可能出现也可能不出现。比如新生婴儿是女孩这个事件就是随机的，硬币正面朝上也是随机的。</p>
+<p><strong>*必然事件</strong></p>
+<p>每次试验中一定出现的事件，比如掷一颗骰子，点数大于0，小于7这个事件是必然的。</p>
+<p><strong>*不可能事件</strong></p>
+<p>每次试验中不可能出现的事件，比如掷一颗骰子，点数大于6这个事件是不可能发生的。</p>
+<p><strong>*基本事件</strong></p>
+<p>样本空间中每个结果称为基本事件，基本事件不能再分解。</p>
+<p><strong>概率</strong></p>
+<p>假设有一样本空间为S 的试验，它在相同条件下可重复进行，对应样本空间中的事件E，记n(E)为n次重复试验中事件E发生的频率（次数），那么该事件发生的概率P(E)定义为：</p>
+<script type="math/tex; mode=display">P(E)=\lim_{n \rightarrow+\infty} \frac{n(E)}{n}</script><p>事件E的概率P(E)要满足概率的三个公理：</p>
+<p>公理1：</p>
+<script type="math/tex; mode=display">0\leq P(E) \leq 1</script><script type="math/tex; mode=display">**即任何事件E的概率在0到1之间**</script><p>公理2：</p>
+<script type="math/tex; mode=display">P(S)= 1</script><script type="math/tex; mode=display">**样本空间作为必然发生的事件，其概率为1**</script><p>公理3：</p>
+<script type="math/tex; mode=display">**对任意一列互不相容的事件E_1,E_2,...(如果i≠j，则E_iE_j=\emptyset，两事件不能同时发生),\\至少一件事件发生的概率等于各事件发生概率和,有 \\P\left(\bigcup_{i=1}^\infty E_i\right) = \sum_{i=1}^\infty P(E_i)**</script><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">&#x27;ignore&#x27;</span>)</span><br><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> mode</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">sns.<span class="built_in">set</span>(style=<span class="string">&#x27;white&#x27;</span>,context=<span class="string">&#x27;notebook&#x27;</span>,palette=<span class="string">&#x27;muted&#x27;</span>)</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">train = pd.read_csv(<span class="string">&#x27;train.csv&#x27;</span>)</span><br><span class="line">copy = train.sample(<span class="number">200</span>)</span><br><span class="line">copy</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>618</th>
+      <td>619</td>
+      <td>1</td>
+      <td>2</td>
+      <td>Becker, Miss. Marion Louise</td>
+      <td>female</td>
+      <td>4.0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>230136</td>
+      <td>39.0000</td>
+      <td>F4</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>514</th>
+      <td>515</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Coleff, Mr. Satio</td>
+      <td>male</td>
+      <td>24.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>349209</td>
+      <td>7.4958</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>101</th>
+      <td>102</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Petroff, Mr. Pastcho ("Pentcho")</td>
+      <td>male</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>349215</td>
+      <td>7.8958</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>879</th>
+      <td>880</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Potter, Mrs. Thomas Jr (Lily Alexenia Wilson)</td>
+      <td>female</td>
+      <td>56.0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>11767</td>
+      <td>83.1583</td>
+      <td>C50</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>294</th>
+      <td>295</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Mineff, Mr. Ivan</td>
+      <td>male</td>
+      <td>24.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>349233</td>
+      <td>7.8958</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>573</th>
+      <td>574</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Kelly, Miss. Mary</td>
+      <td>female</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>14312</td>
+      <td>7.7500</td>
+      <td>NaN</td>
+      <td>Q</td>
+    </tr>
+    <tr>
+      <th>414</th>
+      <td>415</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Sundman, Mr. Johan Julian</td>
+      <td>male</td>
+      <td>44.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>STON/O 2. 3101269</td>
+      <td>7.9250</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>218</th>
+      <td>219</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Bazzani, Miss. Albina</td>
+      <td>female</td>
+      <td>32.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>11813</td>
+      <td>76.2917</td>
+      <td>D15</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>435</th>
+      <td>436</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Carter, Miss. Lucile Polk</td>
+      <td>female</td>
+      <td>14.0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>113760</td>
+      <td>120.0000</td>
+      <td>B96 B98</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>40</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Nicola-Yarred, Miss. Jamila</td>
+      <td>female</td>
+      <td>14.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2651</td>
+      <td>11.2417</td>
+      <td>NaN</td>
+      <td>C</td>
+    </tr>
+  </tbody>
+</table>
+<p>200 rows × 12 columns</p>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#以泰坦尼克数据为例 </span></span><br><span class="line"><span class="comment">#随机抽取200名乘客数据，计算男女乘客的概率</span></span><br><span class="line">male = (copy.Sex==<span class="string">&#x27;male&#x27;</span>).<span class="built_in">sum</span>() / <span class="built_in">len</span>(copy)</span><br><span class="line">male</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>0.59
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">female = (copy.Sex==<span class="string">&#x27;female&#x27;</span>).<span class="built_in">sum</span>() / <span class="built_in">len</span>(copy)</span><br><span class="line">female</span><br></pre></td></tr></table></figure>
+<pre><code>0.41
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">count = copy[<span class="string">&#x27;Sex&#x27;</span>].value_counts()</span><br><span class="line">plt.bar(count.index,height=count)</span><br><span class="line"><span class="comment">#可见随机抽取的人数中男性比例高于女性</span></span><br></pre></td></tr></table></figure>
+<pre><code>&lt;BarContainer object of 2 artists&gt;
+</code></pre><p><img src="/.io//output_5_1.png" alt="png"></p>
+
       
     </div>
     
@@ -386,13 +586,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a  href="/2021/09/22/%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%AD%E8%B6%8B%E5%8A%BF%E5%BA%A6%E9%87%8F/">数据集中趋势度量</a></p>
+        <p><span>本文标题:</span><a  href="/2021/09/22/%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6/">随机事件</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问  的个人博客"></a></p>
         <p><span>发布时间:</span>2021年09月22日 - 22时43分</p>
-        <p><span>最后更新:</span>2021年09月22日 - 22时48分</p>
+        <p><span>最后更新:</span>2021年09月23日 - 09时29分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2021/09/22/%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%AD%E8%B6%8B%E5%8A%BF%E5%BA%A6%E9%87%8F/" title="数据集中趋势度量">https://lc1-11.github.io/2021/09/22/%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%AD%E8%B6%8B%E5%8A%BF%E5%BA%A6%E9%87%8F/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://lc1-11.github.io/2021/09/22/%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%AD%E8%B6%8B%E5%8A%BF%E5%BA%A6%E9%87%8F/　　作者: " title=""></span>
+            <span>原始链接:</span><a class="post-url" href="/2021/09/22/%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6/" title="随机事件">https://lc1-11.github.io/2021/09/22/%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://lc1-11.github.io/2021/09/22/%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6/　　作者: " title=""></span>
         </p>
         <p>
             <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
@@ -403,18 +603,18 @@
 
 <nav id="article-nav">
   
-    <a  href="/2021/09/22/%E6%95%B0%E5%80%BC%E5%9E%8B%E6%95%B0%E6%8D%AE/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a  href="/2021/09/22/%E7%A6%BB%E6%95%A3%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          数值型数据处理
+          离散随机变量
         
       </div>
     </a>
   
   
-    <a  href="/2021/09/22/%E7%A6%BB%E6%95%A3%E7%A8%8B%E5%BA%A6%E5%BA%A6%E9%87%8F/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">数据离散程度的度量</div>
+    <a  href="/2021/09/22/%E5%93%81%E8%B4%A8%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">品质数据处理</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -499,13 +699,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a  href="/2021/09/22/%E6%95%B0%E5%80%BC%E5%9E%8B%E6%95%B0%E6%8D%AE/" title="上一篇: 数值型数据处理">
+            <a  href="/2021/09/22/%E7%A6%BB%E6%95%A3%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F/" title="上一篇: 离散随机变量">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a  href="/2021/09/22/%E7%A6%BB%E6%95%A3%E7%A8%8B%E5%BA%A6%E5%BA%A6%E9%87%8F/" title="下一篇: 数据离散程度的度量">
+            <a  href="/2021/09/22/%E5%93%81%E8%B4%A8%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" title="下一篇: 品质数据处理">
                 <i class="fa fa-angle-right"></i>
             </a>
         
