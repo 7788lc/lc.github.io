@@ -16,13 +16,13 @@
 <meta property="og:site_name" content="neo">
 <meta property="og:description" content="偏态与峰态的度量 偏态和峰态是对数据分布形状的测度，通过它们可以知道数据分布形状是否对称,偏斜程度以及分布的扁平程度等。 偏态 偏态相对与正态分布而言，偏态可以体现异常值的分布方向。 很多统计模型假设前提是数据符合正态分布，数据如果严重偏斜，会影响模型输出结果，所以在输入模型前要观察数据的偏度，以免影响模型输出结果 测度偏态的统计量是偏态系数 偏度系数大于0，说明数据右偏或正偏 偏度系数小于0，说">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lc1-11.github.io/.io//output_3_1.png">
+<meta property="og:image" content="https://lc1-11.github.io/2021/09/22/%E5%81%8F%E6%80%81%E4%B8%8E%E5%B3%B0%E6%80%81/output_3_1.png">
 <meta property="article:published_time" content="2021-09-22T14:43:29.000Z">
 <meta property="article:modified_time" content="2021-09-22T15:00:44.332Z">
 <meta property="article:author" content="a joker">
 <meta property="article:tag" content="数据度量">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://lc1-11.github.io/.io//output_3_1.png">
+<meta name="twitter:image" content="https://lc1-11.github.io/2021/09/22/%E5%81%8F%E6%80%81%E4%B8%8E%E5%B3%B0%E6%80%81/output_3_1.png">
   
     <link rel="alternative" href="/atom.xml" title="neo" type="application/atom+xml">
   
@@ -561,7 +561,7 @@
 <pre><code>3.2250338215549292
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用直方图观察</span></span><br><span class="line"><span class="comment">#抽取的样本中票价偏度为右偏，数据偏度高度正偏，数据集中在左侧</span></span><br><span class="line">p = sns.distplot(copy[<span class="string">&#x27;Fare&#x27;</span>],label=<span class="string">&#x27;skewness%.2f&#x27;</span>)</span><br><span class="line">p.legend(loc=<span class="string">&#x27;best&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>&lt;matplotlib.legend.Legend at 0x1624baad390&gt;
-</code></pre><p><img src="/.io//output_3_1.png" alt="png"></p>
+</code></pre><p><img src="/2021/09/22/%E5%81%8F%E6%80%81%E4%B8%8E%E5%B3%B0%E6%80%81/output_3_1.png" alt="png"></p>
 <p><strong>峰态及其测度</strong></p>
 <p>峰态是与正态分布而言，它是对数据分布平峰或尖峰程度的测试</p>
 <p>正态分布峰度系数为3</p>

@@ -546,7 +546,7 @@
 <pre><code>3.2250338215549292
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用直方图观察</span></span><br><span class="line"><span class="comment">#抽取的样本中票价偏度为右偏，数据偏度高度正偏，数据集中在左侧</span></span><br><span class="line">p = sns.distplot(copy[<span class="string">&#x27;Fare&#x27;</span>],label=<span class="string">&#x27;skewness%.2f&#x27;</span>)</span><br><span class="line">p.legend(loc=<span class="string">&#x27;best&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>&lt;matplotlib.legend.Legend at 0x1624baad390&gt;
-</code></pre><p><img src="/.io//output_3_1.png" alt="png"></p>
+</code></pre><p><img src="/2021/09/22/%E5%81%8F%E6%80%81%E4%B8%8E%E5%B3%B0%E6%80%81/output_3_1.png" alt="png"></p>
 <p><strong>峰态及其测度</strong></p>
 <p>峰态是与正态分布而言，它是对数据分布平峰或尖峰程度的测试</p>
 <p>正态分布峰度系数为3</p>
@@ -657,7 +657,7 @@ Name: Age, dtype: int64
 
 
 &lt;BarContainer object of 6 artists&gt;
-</code></pre><p><img src="/.io//output_2_2.png" alt="png"></p>
+</code></pre><p><img src="/2021/09/22/%E6%95%B0%E5%80%BC%E5%9E%8B%E6%95%B0%E6%8D%AE/output_2_2.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">group = pd.cut(data[<span class="string">&#x27;Age&#x27;</span>],<span class="number">6</span>)<span class="comment">#不带标签的情况</span></span><br><span class="line">group<span class="comment">#自动分成了6组  (0.34, 13.683] &lt; (13.683, 26.947] 。。。</span></span><br></pre></td></tr></table></figure>
 <pre><code>0      (13.683, 26.947]
 1       (26.947, 40.21]
@@ -1028,7 +1028,7 @@ Name: Age, dtype: int64
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> stats</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span>  matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="built_in">list</span> = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">11</span>):</span><br><span class="line">    p = stats.binom.pmf(i,<span class="number">10</span>,<span class="number">0.5</span>)<span class="comment">#10次伯努利实验，正面概率为0.5，求i次正面的概率</span></span><br><span class="line">    <span class="built_in">list</span>.append(p)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>)</span><br><span class="line"></span><br><span class="line">x = np.arange(<span class="number">0</span>,<span class="number">11</span>)</span><br><span class="line">plt.bar(x,height=<span class="built_in">list</span>)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;K&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;probability&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;二项分布概率和为 ： &quot;</span>,<span class="built_in">sum</span>(<span class="built_in">list</span>))</span><br></pre></td></tr></table></figure>
 <pre><code>[0.0009765625, 0.00976562500000001, 0.04394531249999999, 0.11718750000000014, 0.20507812500000022, 0.24609375000000025, 0.20507812500000022, 0.11718750000000014, 0.04394531249999999, 0.00976562500000001, 0.0009765625]
 二项分布概率和为 ：  1.0000000000000009
-</code></pre><p><img src="/.io//output_5_1.png" alt="png"></p>
+</code></pre><p><img src="/2021/09/22/%E7%A6%BB%E6%95%A3%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F/output_5_2.png" alt="png"></p>
 
       
     </div>
@@ -1340,7 +1340,7 @@ Name: Age, dtype: int64
 <pre><code>0.41
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">count = copy[<span class="string">&#x27;Sex&#x27;</span>].value_counts()</span><br><span class="line">plt.bar(count.index,height=count)</span><br><span class="line"><span class="comment">#可见随机抽取的人数中男性比例高于女性</span></span><br></pre></td></tr></table></figure>
 <pre><code>&lt;BarContainer object of 2 artists&gt;
-</code></pre><p><img src="/.io//output_5_1.png" alt="png"></p>
+</code></pre><p><img src="/2021/09/22/%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6/output_5_1.png" alt="png"></p>
 
       
     </div>
@@ -1624,7 +1624,7 @@ Name: Age, dtype: int64
 Name: Pclass, dtype: int64
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#饼图查看频数</span></span><br><span class="line">pclass = df[<span class="string">&#x27;Pclass&#x27;</span>].value_counts()</span><br><span class="line">labels=[<span class="string">&#x27;3&#x27;</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;1&#x27;</span>]</span><br><span class="line">fig = plt.figure()</span><br><span class="line">plt.pie(pclass,labels=labels,autopct=<span class="string">&#x27;%1.2f%%&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&quot;Pie Chart&quot;</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>Text(0.5,1,&#39;Pie Chart&#39;)
-</code></pre><p><img src="/.io//output_3_1.png" alt="png"></p>
+</code></pre><p><img src="/2021/09/22/%E5%93%81%E8%B4%A8%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/output_3_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#根据登录港口 查看各等级票的人数  按升序排列</span></span><br><span class="line">s = df[<span class="string">&#x27;Pclass&#x27;</span>][df[<span class="string">&#x27;Embarked&#x27;</span>]==<span class="string">&#x27;S&#x27;</span>].value_counts().sort_index(ascending = <span class="literal">True</span>)<span class="comment">#S港口登录的人</span></span><br><span class="line"><span class="built_in">print</span>(s)</span><br><span class="line">c = df[<span class="string">&#x27;Pclass&#x27;</span>][df[<span class="string">&#x27;Embarked&#x27;</span>]==<span class="string">&#x27;C&#x27;</span>].value_counts().sort_index(ascending = <span class="literal">True</span>)<span class="comment">#C港口登录的人</span></span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"><span class="comment">#可见C港登录的人中 1类票人最多 也就是这个港口登录的有钱人比较多</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <pre><code>1    24
 2    42
@@ -1636,10 +1636,10 @@ Name: Pclass, dtype: int64
 Name: Pclass, dtype: int64
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#条形图展示 各港口的票类型频数</span></span><br><span class="line">sns.catplot(<span class="string">&#x27;Pclass&#x27;</span>,col=<span class="string">&#x27;Embarked&#x27;</span>,kind=<span class="string">&#x27;count&#x27;</span>,data=data,height=<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x220e3ec8748&gt;
-</code></pre><p><img src="/.io//output_5_1.png" alt="png"></p>
+</code></pre><p><img src="/2021/09/22/%E5%93%81%E8%B4%A8%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/output_5_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">#男士，女士生存率 Survived=0代表死亡  Survived=1代表生存</span></span><br><span class="line">sns.catplot(<span class="string">&#x27;Sex&#x27;</span>,col=<span class="string">&#x27;Survived&#x27;</span>,kind=<span class="string">&#x27;count&#x27;</span>,data=data,height=<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x220e3c7c860&gt;
-</code></pre><p><img src="/.io//output_6_1.png" alt="png"></p>
+</code></pre><p><img src="/2021/09/22/%E5%93%81%E8%B4%A8%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/output_6_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用交叉表统计分类频数 margins=True 是添加行列合计功能</span></span><br><span class="line"><span class="comment">#使用交叉表比单独使用value_counts 表达更清晰</span></span><br><span class="line">pd.crosstab(df[<span class="string">&#x27;Pclass&#x27;</span>],df[<span class="string">&#x27;Embarked&#x27;</span>],margins=<span class="literal">True</span>)</span><br><span class="line"><span class="comment">#pd.crosstab(df[&#x27;Pclass&#x27;],df[&#x27;Embarked&#x27;]).applay(lambda row：row/row.sum())</span></span><br></pre></td></tr></table></figure>
 <div>
 <style scoped>
@@ -1915,7 +1915,7 @@ Name: Pclass, dtype: int64
 C    168
 Q     77
 Name: Embarked, dtype: int64
-</code></pre><p><img src="/.io//output_12_1.png" alt="png"></p>
+</code></pre><p><img src="/2021/09/22/%E5%93%81%E8%B4%A8%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/output_12_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
 
       

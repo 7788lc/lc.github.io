@@ -16,13 +16,13 @@
 <meta property="og:site_name" content="neo">
 <meta property="og:description" content="数值型数据的整理与展示 数据分组： 数据分组是将原始数据安装某种标准分成不同的组别，分组后的数据称为分组数据。 数据分组方法分为单变量分组和组距分组 其中单变量分组适用于离散变量，单变量分组是把每一个变量值作为一组。 在连续变量或者变量值较多的情况，通常用组距分组。它是将全部变量依次划分为若干个区间并将一个区间的变量值作为一组 123456789101112131415import warning">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lc1-11.github.io/.io//output_2_2.png">
+<meta property="og:image" content="https://lc1-11.github.io/2021/09/22/%E6%95%B0%E5%80%BC%E5%9E%8B%E6%95%B0%E6%8D%AE/output_2_2.png">
 <meta property="article:published_time" content="2021-09-22T14:43:29.000Z">
 <meta property="article:modified_time" content="2021-09-22T14:44:21.921Z">
 <meta property="article:author" content="a joker">
 <meta property="article:tag" content="数据预处理">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://lc1-11.github.io/.io//output_2_2.png">
+<meta name="twitter:image" content="https://lc1-11.github.io/2021/09/22/%E6%95%B0%E5%80%BC%E5%9E%8B%E6%95%B0%E6%8D%AE/output_2_2.png">
   
     <link rel="alternative" href="/atom.xml" title="neo" type="application/atom+xml">
   
@@ -365,7 +365,7 @@ Name: Age, dtype: int64
 
 
 &lt;BarContainer object of 6 artists&gt;
-</code></pre><p><img src="/.io//output_2_2.png" alt="png"></p>
+</code></pre><p><img src="/2021/09/22/%E6%95%B0%E5%80%BC%E5%9E%8B%E6%95%B0%E6%8D%AE/output_2_2.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">group = pd.cut(data[<span class="string">&#x27;Age&#x27;</span>],<span class="number">6</span>)<span class="comment">#不带标签的情况</span></span><br><span class="line">group<span class="comment">#自动分成了6组  (0.34, 13.683] &lt; (13.683, 26.947] 。。。</span></span><br></pre></td></tr></table></figure>
 <pre><code>0      (13.683, 26.947]
 1       (26.947, 40.21]

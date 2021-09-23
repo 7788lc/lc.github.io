@@ -16,16 +16,16 @@
 <meta property="og:site_name" content="neo">
 <meta property="og:description" content="品质数据（非数值数据）的处理 品质数据是用文字表示的，主要做分类处理，品质数据又分为分类数据和顺序数据。 分类数据是说明事物类别的一个名称，例如：水果类，蔬菜类，肉类。 顺序数据是说明事物有序类别的一个名称，例如：服务等级分为优，良，中。学历分为大专，本科，研究生。等等 123456789101112#以泰坦尼克数据为例import warningswarnings.filterwarnings(">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lc1-11.github.io/.io//output_3_1.png">
-<meta property="og:image" content="https://lc1-11.github.io/.io//output_5_1.png">
-<meta property="og:image" content="https://lc1-11.github.io/.io//output_6_1.png">
-<meta property="og:image" content="https://lc1-11.github.io/.io//output_12_1.png">
+<meta property="og:image" content="https://lc1-11.github.io/2021/09/22/%E5%93%81%E8%B4%A8%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/output_3_1.png">
+<meta property="og:image" content="https://lc1-11.github.io/2021/09/22/%E5%93%81%E8%B4%A8%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/output_5_1.png">
+<meta property="og:image" content="https://lc1-11.github.io/2021/09/22/%E5%93%81%E8%B4%A8%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/output_6_1.png">
+<meta property="og:image" content="https://lc1-11.github.io/2021/09/22/%E5%93%81%E8%B4%A8%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/output_12_1.png">
 <meta property="article:published_time" content="2021-09-22T14:26:28.000Z">
 <meta property="article:modified_time" content="2021-09-22T14:37:31.253Z">
 <meta property="article:author" content="a joker">
 <meta property="article:tag" content="数据预处理">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://lc1-11.github.io/.io//output_3_1.png">
+<meta name="twitter:image" content="https://lc1-11.github.io/2021/09/22/%E5%93%81%E8%B4%A8%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/output_3_1.png">
   
     <link rel="alternative" href="/atom.xml" title="neo" type="application/atom+xml">
   
@@ -552,7 +552,7 @@
 Name: Pclass, dtype: int64
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#饼图查看频数</span></span><br><span class="line">pclass = df[<span class="string">&#x27;Pclass&#x27;</span>].value_counts()</span><br><span class="line">labels=[<span class="string">&#x27;3&#x27;</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;1&#x27;</span>]</span><br><span class="line">fig = plt.figure()</span><br><span class="line">plt.pie(pclass,labels=labels,autopct=<span class="string">&#x27;%1.2f%%&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&quot;Pie Chart&quot;</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>Text(0.5,1,&#39;Pie Chart&#39;)
-</code></pre><p><img src="/.io//output_3_1.png" alt="png"></p>
+</code></pre><p><img src="/2021/09/22/%E5%93%81%E8%B4%A8%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/output_3_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#根据登录港口 查看各等级票的人数  按升序排列</span></span><br><span class="line">s = df[<span class="string">&#x27;Pclass&#x27;</span>][df[<span class="string">&#x27;Embarked&#x27;</span>]==<span class="string">&#x27;S&#x27;</span>].value_counts().sort_index(ascending = <span class="literal">True</span>)<span class="comment">#S港口登录的人</span></span><br><span class="line"><span class="built_in">print</span>(s)</span><br><span class="line">c = df[<span class="string">&#x27;Pclass&#x27;</span>][df[<span class="string">&#x27;Embarked&#x27;</span>]==<span class="string">&#x27;C&#x27;</span>].value_counts().sort_index(ascending = <span class="literal">True</span>)<span class="comment">#C港口登录的人</span></span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"><span class="comment">#可见C港登录的人中 1类票人最多 也就是这个港口登录的有钱人比较多</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <pre><code>1    24
 2    42
@@ -564,10 +564,10 @@ Name: Pclass, dtype: int64
 Name: Pclass, dtype: int64
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#条形图展示 各港口的票类型频数</span></span><br><span class="line">sns.catplot(<span class="string">&#x27;Pclass&#x27;</span>,col=<span class="string">&#x27;Embarked&#x27;</span>,kind=<span class="string">&#x27;count&#x27;</span>,data=data,height=<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x220e3ec8748&gt;
-</code></pre><p><img src="/.io//output_5_1.png" alt="png"></p>
+</code></pre><p><img src="/2021/09/22/%E5%93%81%E8%B4%A8%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/output_5_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">#男士，女士生存率 Survived=0代表死亡  Survived=1代表生存</span></span><br><span class="line">sns.catplot(<span class="string">&#x27;Sex&#x27;</span>,col=<span class="string">&#x27;Survived&#x27;</span>,kind=<span class="string">&#x27;count&#x27;</span>,data=data,height=<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x220e3c7c860&gt;
-</code></pre><p><img src="/.io//output_6_1.png" alt="png"></p>
+</code></pre><p><img src="/2021/09/22/%E5%93%81%E8%B4%A8%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/output_6_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用交叉表统计分类频数 margins=True 是添加行列合计功能</span></span><br><span class="line"><span class="comment">#使用交叉表比单独使用value_counts 表达更清晰</span></span><br><span class="line">pd.crosstab(df[<span class="string">&#x27;Pclass&#x27;</span>],df[<span class="string">&#x27;Embarked&#x27;</span>],margins=<span class="literal">True</span>)</span><br><span class="line"><span class="comment">#pd.crosstab(df[&#x27;Pclass&#x27;],df[&#x27;Embarked&#x27;]).applay(lambda row：row/row.sum())</span></span><br></pre></td></tr></table></figure>
 <div>
 <style scoped>
@@ -843,7 +843,7 @@ Name: Pclass, dtype: int64
 C    168
 Q     77
 Name: Embarked, dtype: int64
-</code></pre><p><img src="/.io//output_12_1.png" alt="png"></p>
+</code></pre><p><img src="/2021/09/22/%E5%93%81%E8%B4%A8%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/output_12_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
 
       
