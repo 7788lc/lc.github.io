@@ -58,8 +58,6 @@
   </script>
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
 <!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
 <body>
   <div id="container">
@@ -716,120 +714,6 @@ Name: Age, dtype: int64
 
 
   
-    <article id="post-数据集中趋势度量" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2021/09/22/%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%AD%E8%B6%8B%E5%8A%BF%E5%BA%A6%E9%87%8F/" class="article-date">
-      <time datetime="2021-09-22T14:43:29.000Z" itemprop="datePublished">2021-09-22</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2021/09/22/%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%AD%E8%B6%8B%E5%8A%BF%E5%BA%A6%E9%87%8F/">数据集中趋势度量</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p><strong>集中趋势的度量</strong></p>
-<p>集中趋势是一组数据向某一中心值靠拢的程度，反应了一组数据中心点的位置所在。</p>
-<p>1.分类数据：众数</p>
-<p>众数是一组数据中出现次数最多的变量值</p>
-<p>众数主要用于测度分类数据的集中趋势</p>
-<p>众数不受极端值影响，如果没有明显的集中趋势或最高峰点，众数可能不存在</p>
-<p>可以有多个众数</p>
-<p>数据量少的情况不适合使用众数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> mode</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">&#x27;ignore&#x27;</span>)</span><br><span class="line"><span class="comment">#使用scipy 库的mode函数求众数</span></span><br><span class="line"><span class="built_in">list</span> = [<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;3&#x27;</span>,<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;2&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(mode(<span class="built_in">list</span>))</span><br><span class="line"><span class="built_in">print</span>(mode(<span class="built_in">list</span>)[<span class="number">0</span>][<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
-<pre><code>ModeResult(mode=array([&#39;2&#39;], dtype=&#39;&lt;U1&#39;), count=array([3]))
-2
-</code></pre><p>顺序数据：中位数和分位数</p>
-<p>中位数是一组数据排序后处于中间位置的变量值</p>
-<p>适用于偏度较大的数据</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#求中位数  元素个数奇数的情况 n+1 / 2 位置的值就是中位数</span></span><br><span class="line"><span class="comment">#median函数会自动排序</span></span><br><span class="line">odd = np.array([<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>])</span><br><span class="line"><span class="built_in">print</span>(np.median(odd))</span><br><span class="line"></span><br><span class="line"><span class="comment">#n为偶数的情况 中间两个值之和除以2</span></span><br><span class="line">even = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>])</span><br><span class="line"><span class="comment">#3+4 /2</span></span><br><span class="line"><span class="built_in">print</span>(np.median(even))</span><br></pre></td></tr></table></figure>
-<pre><code>3.0
-3.5
-</code></pre><p>四分位数</p>
-<p>通过三个点将数据分为4部分 ——25%——50%——75%——</p>
-<p>常用算法有几种 但是差别不大</p>
-<p>例如：</p>
-<p>第一分位 Q1=(n+1)×0.25</p>
-<p>第二分位 Q 2 = ( n + 1 ) × 0.5</p>
-<p>第三分位 Q 3 = ( n + 1 ) × 0.75 </p>
-<p>其中第一分位与第三分位数中间包含了50%的数据</p>
-<p>numpy percetile计算方法：</p>
-<p>位置<br>Q1=1+(n−1)×0.25</p>
-<p>位置<br>Q2=1+(n−1)×0.5</p>
-<p>位置<br>Q3=1+(n−1)×0.75</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#percentile函数求四分卫数  自动排序</span></span><br><span class="line">p = np.array([<span class="number">8</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(np.percentile(p,(<span class="number">25</span>)))</span><br><span class="line"><span class="built_in">print</span>(np.percentile(p,(<span class="number">50</span>)))</span><br><span class="line"><span class="built_in">print</span>(np.percentile(p,(<span class="number">75</span>)))</span><br></pre></td></tr></table></figure>
-<pre><code>2.75
-4.5
-6.25
-</code></pre><p>数值型数据：平均数</p>
-<p>平均数也称为均值，它是一组数据相加后除以数据总数得到的结果</p>
-<p>平均数不适用于分类数据和顺序数据，并且容易受到极大值，极小值影响</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#求平均数</span></span><br><span class="line">m = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br><span class="line">np.mean(m)</span><br><span class="line"></span><br><span class="line"><span class="comment">#极大值对平均数的影响</span></span><br><span class="line">m1 = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">10</span>])</span><br><span class="line">np.mean(m1)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<pre><code>4.0
-</code></pre><p>加权平均数：</p>
-<p>一组数据中每个数据具有权重的情况下使用加权平均数计算均值</p>
-<p>权重一般计算方法是计算各数值出现的频率</p>
-<p>average 函数计算加权方法 </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#average 函数计算加权方法</span></span><br><span class="line"><span class="comment">#(1*3 + 2*3 + 3*4) / 3+3+4</span></span><br><span class="line">m = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">np.average(m,weights=[<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br></pre></td></tr></table></figure>
-<pre><code>2.1
-</code></pre><p>几何平均数</p>
-<p>1.n个变量值乘积的n次方</p>
-<script type="math/tex; mode=display">G =\sqrt[n]{X_1 \times X_2 \times \cdot \cdot \cdot \times X_n } = \sqrt[n]{\prod_{i=1}^n X_i}</script><p>2.几何平均数主要用于计算平均比率，变量值本身是比率的形式，用几何平均法比较合理。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> gmean</span><br><span class="line">l = [<span class="number">1.045</span>,<span class="number">1.021</span>,<span class="number">1.255</span>,<span class="number">1.019</span>]</span><br><span class="line"></span><br><span class="line">gmean(l)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<pre><code>1.0807866848335959
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/%E7%BB%9F%E8%AE%A1/">统计</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%A6%E9%87%8F/" rel="tag">数据度量</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
     <article id="post-离散程度度量" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -931,6 +815,120 @@ Name: Age, dtype: int64
 <p>离散系数也称为变异系数，它是一组数据的标准差与其相应平均数之比</p>
 <script type="math/tex; mode=display">cv = \frac{s}{\overline{x}}</script><p>离散系数主要用于比较不同样本数据，或者量纲不同变量的离散程度，离散系数越大，数据离散程度越大，反之离散程度越小。</p>
 
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/%E7%BB%9F%E8%AE%A1/">统计</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%A6%E9%87%8F/" rel="tag">数据度量</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-数据集中趋势度量" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2021/09/22/%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%AD%E8%B6%8B%E5%8A%BF%E5%BA%A6%E9%87%8F/" class="article-date">
+      <time datetime="2021-09-22T14:43:29.000Z" itemprop="datePublished">2021-09-22</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2021/09/22/%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%AD%E8%B6%8B%E5%8A%BF%E5%BA%A6%E9%87%8F/">数据集中趋势度量</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><strong>集中趋势的度量</strong></p>
+<p>集中趋势是一组数据向某一中心值靠拢的程度，反应了一组数据中心点的位置所在。</p>
+<p>1.分类数据：众数</p>
+<p>众数是一组数据中出现次数最多的变量值</p>
+<p>众数主要用于测度分类数据的集中趋势</p>
+<p>众数不受极端值影响，如果没有明显的集中趋势或最高峰点，众数可能不存在</p>
+<p>可以有多个众数</p>
+<p>数据量少的情况不适合使用众数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> mode</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">&#x27;ignore&#x27;</span>)</span><br><span class="line"><span class="comment">#使用scipy 库的mode函数求众数</span></span><br><span class="line"><span class="built_in">list</span> = [<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;3&#x27;</span>,<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;2&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(mode(<span class="built_in">list</span>))</span><br><span class="line"><span class="built_in">print</span>(mode(<span class="built_in">list</span>)[<span class="number">0</span>][<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+<pre><code>ModeResult(mode=array([&#39;2&#39;], dtype=&#39;&lt;U1&#39;), count=array([3]))
+2
+</code></pre><p>顺序数据：中位数和分位数</p>
+<p>中位数是一组数据排序后处于中间位置的变量值</p>
+<p>适用于偏度较大的数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#求中位数  元素个数奇数的情况 n+1 / 2 位置的值就是中位数</span></span><br><span class="line"><span class="comment">#median函数会自动排序</span></span><br><span class="line">odd = np.array([<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>])</span><br><span class="line"><span class="built_in">print</span>(np.median(odd))</span><br><span class="line"></span><br><span class="line"><span class="comment">#n为偶数的情况 中间两个值之和除以2</span></span><br><span class="line">even = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>])</span><br><span class="line"><span class="comment">#3+4 /2</span></span><br><span class="line"><span class="built_in">print</span>(np.median(even))</span><br></pre></td></tr></table></figure>
+<pre><code>3.0
+3.5
+</code></pre><p>四分位数</p>
+<p>通过三个点将数据分为4部分 ——25%——50%——75%——</p>
+<p>常用算法有几种 但是差别不大</p>
+<p>例如：</p>
+<p>第一分位 Q1=(n+1)×0.25</p>
+<p>第二分位 Q 2 = ( n + 1 ) × 0.5</p>
+<p>第三分位 Q 3 = ( n + 1 ) × 0.75 </p>
+<p>其中第一分位与第三分位数中间包含了50%的数据</p>
+<p>numpy percetile计算方法：</p>
+<p>位置<br>Q1=1+(n−1)×0.25</p>
+<p>位置<br>Q2=1+(n−1)×0.5</p>
+<p>位置<br>Q3=1+(n−1)×0.75</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#percentile函数求四分卫数  自动排序</span></span><br><span class="line">p = np.array([<span class="number">8</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(np.percentile(p,(<span class="number">25</span>)))</span><br><span class="line"><span class="built_in">print</span>(np.percentile(p,(<span class="number">50</span>)))</span><br><span class="line"><span class="built_in">print</span>(np.percentile(p,(<span class="number">75</span>)))</span><br></pre></td></tr></table></figure>
+<pre><code>2.75
+4.5
+6.25
+</code></pre><p>数值型数据：平均数</p>
+<p>平均数也称为均值，它是一组数据相加后除以数据总数得到的结果</p>
+<p>平均数不适用于分类数据和顺序数据，并且容易受到极大值，极小值影响</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#求平均数</span></span><br><span class="line">m = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br><span class="line">np.mean(m)</span><br><span class="line"></span><br><span class="line"><span class="comment">#极大值对平均数的影响</span></span><br><span class="line">m1 = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">10</span>])</span><br><span class="line">np.mean(m1)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>4.0
+</code></pre><p>加权平均数：</p>
+<p>一组数据中每个数据具有权重的情况下使用加权平均数计算均值</p>
+<p>权重一般计算方法是计算各数值出现的频率</p>
+<p>average 函数计算加权方法 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#average 函数计算加权方法</span></span><br><span class="line"><span class="comment">#(1*3 + 2*3 + 3*4) / 3+3+4</span></span><br><span class="line">m = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">np.average(m,weights=[<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br></pre></td></tr></table></figure>
+<pre><code>2.1
+</code></pre><p>几何平均数</p>
+<p>1.n个变量值乘积的n次方</p>
+<script type="math/tex; mode=display">G =\sqrt[n]{X_1 \times X_2 \times \cdot \cdot \cdot \times X_n } = \sqrt[n]{\prod_{i=1}^n X_i}</script><p>2.几何平均数主要用于计算平均比率，变量值本身是比率的形式，用几何平均法比较合理。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> gmean</span><br><span class="line">l = [<span class="number">1.045</span>,<span class="number">1.021</span>,<span class="number">1.255</span>,<span class="number">1.019</span>]</span><br><span class="line"></span><br><span class="line">gmean(l)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>1.0807866848335959
+</code></pre>
       
     </div>
     
@@ -2283,27 +2281,6 @@ ga('send', 'pageview');
 	})();
 	</script>
 
-
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';                 
-    }       
-});
-</script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
 
 
 <div class="scroll" id="scroll">
