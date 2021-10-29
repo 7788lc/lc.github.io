@@ -186,8 +186,6 @@
                         
                             <li><a  href="/categories/%E6%95%B0%E5%80%BC">数值</a></li>
                         
-                            <li><a  href="/categories/%E7%BC%96%E7%A8%8B">编程</a></li>
-                        
                             <li><a  href="/about/">关于</a></li>
                         
                         </ul>
@@ -207,7 +205,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/python%E6%95%B0%E6%8D%AE%E9%80%8F%E8%A7%86%E8%A1%A8/" style="font-size: 10px;">python数据透视表</a> <a href="/tags/%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/" style="font-size: 15px;">参数估计</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%A6%E9%87%8F/" style="font-size: 20px;">数据度量</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E8%AF%AF%E5%B7%AE/" style="font-size: 10px;">数据误差</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/" style="font-size: 15px;">数据预处理</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F/" style="font-size: 10px;">离散随机变量</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6/" style="font-size: 10px;">随机事件</a>
+                        <a href="/tags/python%E5%BB%BA%E6%A8%A1/" style="font-size: 20px;">python建模</a> <a href="/tags/python%E6%95%B0%E6%8D%AE%E9%80%8F%E8%A7%86%E8%A1%A8/" style="font-size: 10px;">python数据透视表</a> <a href="/tags/%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/" style="font-size: 20px;">参数估计</a> <a href="/tags/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%B1%82%E5%80%BC/" style="font-size: 10px;">多项式求值</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%A6%E9%87%8F/" style="font-size: 20px;">数据度量</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E8%AF%AF%E5%B7%AE/" style="font-size: 10px;">数据误差</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/" style="font-size: 15px;">数据预处理</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F/" style="font-size: 10px;">离散随机变量</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6/" style="font-size: 10px;">随机事件</a>
                     </div>
                 </section>
                 
@@ -264,8 +262,6 @@
                     <li><a href="/categories/%E7%BB%9F%E8%AE%A1">统计</a></li>
                 
                     <li><a href="/categories/%E6%95%B0%E5%80%BC">数值</a></li>
-                
-                    <li><a href="/categories/%E7%BC%96%E7%A8%8B">编程</a></li>
                 
                     <li><a href="/about/">关于</a></li>
                 
@@ -595,6 +591,88 @@
 
 
   
+    <article id="post-多项式求值" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2021/09/22/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%B1%82%E5%80%BC/" class="article-date">
+      <time datetime="2021-09-22T14:43:29.000Z" itemprop="datePublished">2021-09-22</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2021/09/22/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%B1%82%E5%80%BC/">秦九昭算法</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><strong>多项式求值的秦九昭算法</strong></p>
+<p>给定n次多项式：</p>
+<script type="math/tex; mode=display">p(x) = a_0x^n + a_1x^{n-1}+...+a_{n-1}x+a_n, 其中a_0 \neq0</script><p>求<script type="math/tex">x^*处的p(x^*)的值</script></p>
+<p>如果直接计算，第n次项需要n次乘法，第n-1次项需要n-1次乘法，以此类推，n次多项式总共需要乘法的次数计算：</p>
+<script type="math/tex; mode=display">1+2+3+...+n = \frac{n(n+1)}{2} = \frac{n^2}{2}+\frac{n}{2}</script><p>去掉低次项和常数，共需要$O(n^2)$次乘法，并且还需要n次加法</p>
+<p>改进算法：假设n=3,则</p>
+<script type="math/tex; mode=display">p(x) = a_0x^3 + a_1x^2+a_2x^1+a_3</script><p>第一次提取x得：<script type="math/tex">x(a_0x^2+a_1x+a_2)+a_3</script></p>
+<p>第二次提取x得：<script type="math/tex">x(x(a_0x+a_1)+a_2)+a_3</script></p>
+<p>由此归纳，可以求得n次项的公式为：</p>
+<script type="math/tex; mode=display">(..(a_0x+a_1)x+...+a_{n-1})x+a_n</script><p>它可表示为：<script type="math/tex">\begin{cases} b_0=a_0 \\ b_i = b_{i-1}x^* +a_i , 其中 i = 1,2,...n\end{cases}</script></p>
+<p>根据上面公式可用递归法求解多项式方程：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#秦九韶算法</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">sys.setrecursionlimit(<span class="number">10000</span>)</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">&quot;ignore&quot;</span>)</span><br><span class="line"></span><br><span class="line">coef =<span class="number">3</span> <span class="comment">#系数 为了方便 取一样的值</span></span><br><span class="line">n  =  <span class="number">2000</span> <span class="comment">#项数</span></span><br><span class="line">x = <span class="number">3</span></span><br><span class="line"><span class="comment">#秦九韶算法</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">polyval</span>(<span class="params">n,a,x</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">bi</span>(<span class="params">n</span>):</span></span><br><span class="line">        <span class="keyword">if</span> n==<span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> a*x+a</span><br><span class="line">        <span class="keyword">return</span> bi(n-<span class="number">1</span>)*x+a</span><br><span class="line">    <span class="keyword">return</span> bi(n)</span><br><span class="line"></span><br><span class="line">begin = time.clock()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;计算结果：&quot;</span>,polyval(n,coef,x))</span><br><span class="line"></span><br><span class="line">end=time.clock()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;优化算法运行时间为：&#123;&#125;秒&#x27;</span>.<span class="built_in">format</span>(end-begin))</span><br></pre></td></tr></table></figure>
+<pre><code>计算结果： 7865420632751932243469885786240972567380781193458348330153496053148088198022739701811689114391064999840240278132653744649471157961439788913814863909421373168428105710404897307216883328152442355836936142066769908267349005965252252915162711185165658574311724678441620806407158479616213577350933897990624356546701463481828908829431510325888983286689102858877118881081133409974499968098859657681639066408398985689710805698912647659500904210928788080053653728786390490507146819456621861814579899910393835810330421705700620967412424006596220986104598626323625831179849853089977825803525828708495714166390375521594049782922331883934183207290666460582194178320137415257581058911256076769416608658899872683384121383744716181173849253209198839349279285102205333200209363472860536817119457705863700254843720739314075664445115834713541606907464203547794689492567100212211686900918854120735898108752773954939305366002551711396827696254210469506024962532185743496980003
+优化算法运行时间为：0.0023105000000214204秒
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#暴力法</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bru</span>(<span class="params">n,a,x</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">p</span>(<span class="params">n</span>):</span> </span><br><span class="line">        <span class="keyword">if</span> n==<span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> a</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">pow</span>(x,n)*a + p(n-<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> p(n)   </span><br><span class="line"></span><br><span class="line">begin = time.clock()</span><br><span class="line"><span class="built_in">print</span>(bru(n,coef,x))</span><br><span class="line">end=time.clock()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;暴力算法运行时间为：&#123;&#125;秒&#x27;</span>.<span class="built_in">format</span>(end-begin))</span><br></pre></td></tr></table></figure>
+<pre><code>7865420632751932243469885786240972567380781193458348330153496053148088198022739701811689114391064999840240278132653744649471157961439788913814863909421373168428105710404897307216883328152442355836936142066769908267349005965252252915162711185165658574311724678441620806407158479616213577350933897990624356546701463481828908829431510325888983286689102858877118881081133409974499968098859657681639066408398985689710805698912647659500904210928788080053653728786390490507146819456621861814579899910393835810330421705700620967412424006596220986104598626323625831179849853089977825803525828708495714166390375521594049782922331883934183207290666460582194178320137415257581058911256076769416608658899872683384121383744716181173849253209198839349279285102205333200209363472860536817119457705863700254843720739314075664445115834713541606907464203547794689492567100212211686900918854120735898108752773954939305366002551711396827696254210469506024962532185743496980003
+暴力算法运行时间为：0.007981000000199856秒
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/%E6%95%B0%E5%80%BC/">数值</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%B1%82%E5%80%BC/" rel="tag">多项式求值</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-数值型数据" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -717,6 +795,120 @@ Name: Age, dtype: int64
 
 
   
+    <article id="post-数据集中趋势度量" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2021/09/22/%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%AD%E8%B6%8B%E5%8A%BF%E5%BA%A6%E9%87%8F/" class="article-date">
+      <time datetime="2021-09-22T14:43:29.000Z" itemprop="datePublished">2021-09-22</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2021/09/22/%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%AD%E8%B6%8B%E5%8A%BF%E5%BA%A6%E9%87%8F/">数据集中趋势度量</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><strong>集中趋势的度量</strong></p>
+<p>集中趋势是一组数据向某一中心值靠拢的程度，反应了一组数据中心点的位置所在。</p>
+<p>1.分类数据：众数</p>
+<p>众数是一组数据中出现次数最多的变量值</p>
+<p>众数主要用于测度分类数据的集中趋势</p>
+<p>众数不受极端值影响，如果没有明显的集中趋势或最高峰点，众数可能不存在</p>
+<p>可以有多个众数</p>
+<p>数据量少的情况不适合使用众数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> mode</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">&#x27;ignore&#x27;</span>)</span><br><span class="line"><span class="comment">#使用scipy 库的mode函数求众数</span></span><br><span class="line"><span class="built_in">list</span> = [<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;3&#x27;</span>,<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;2&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(mode(<span class="built_in">list</span>))</span><br><span class="line"><span class="built_in">print</span>(mode(<span class="built_in">list</span>)[<span class="number">0</span>][<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+<pre><code>ModeResult(mode=array([&#39;2&#39;], dtype=&#39;&lt;U1&#39;), count=array([3]))
+2
+</code></pre><p>顺序数据：中位数和分位数</p>
+<p>中位数是一组数据排序后处于中间位置的变量值</p>
+<p>适用于偏度较大的数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#求中位数  元素个数奇数的情况 n+1 / 2 位置的值就是中位数</span></span><br><span class="line"><span class="comment">#median函数会自动排序</span></span><br><span class="line">odd = np.array([<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>])</span><br><span class="line"><span class="built_in">print</span>(np.median(odd))</span><br><span class="line"></span><br><span class="line"><span class="comment">#n为偶数的情况 中间两个值之和除以2</span></span><br><span class="line">even = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>])</span><br><span class="line"><span class="comment">#3+4 /2</span></span><br><span class="line"><span class="built_in">print</span>(np.median(even))</span><br></pre></td></tr></table></figure>
+<pre><code>3.0
+3.5
+</code></pre><p>四分位数</p>
+<p>通过三个点将数据分为4部分 ——25%——50%——75%——</p>
+<p>常用算法有几种 但是差别不大</p>
+<p>例如：</p>
+<p>第一分位 Q1=(n+1)×0.25</p>
+<p>第二分位 Q 2 = ( n + 1 ) × 0.5</p>
+<p>第三分位 Q 3 = ( n + 1 ) × 0.75 </p>
+<p>其中第一分位与第三分位数中间包含了50%的数据</p>
+<p>numpy percetile计算方法：</p>
+<p>位置<br>Q1=1+(n−1)×0.25</p>
+<p>位置<br>Q2=1+(n−1)×0.5</p>
+<p>位置<br>Q3=1+(n−1)×0.75</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#percentile函数求四分卫数  自动排序</span></span><br><span class="line">p = np.array([<span class="number">8</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(np.percentile(p,(<span class="number">25</span>)))</span><br><span class="line"><span class="built_in">print</span>(np.percentile(p,(<span class="number">50</span>)))</span><br><span class="line"><span class="built_in">print</span>(np.percentile(p,(<span class="number">75</span>)))</span><br></pre></td></tr></table></figure>
+<pre><code>2.75
+4.5
+6.25
+</code></pre><p>数值型数据：平均数</p>
+<p>平均数也称为均值，它是一组数据相加后除以数据总数得到的结果</p>
+<p>平均数不适用于分类数据和顺序数据，并且容易受到极大值，极小值影响</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#求平均数</span></span><br><span class="line">m = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br><span class="line">np.mean(m)</span><br><span class="line"></span><br><span class="line"><span class="comment">#极大值对平均数的影响</span></span><br><span class="line">m1 = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">10</span>])</span><br><span class="line">np.mean(m1)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>4.0
+</code></pre><p>加权平均数：</p>
+<p>一组数据中每个数据具有权重的情况下使用加权平均数计算均值</p>
+<p>权重一般计算方法是计算各数值出现的频率</p>
+<p>average 函数计算加权方法 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#average 函数计算加权方法</span></span><br><span class="line"><span class="comment">#(1*3 + 2*3 + 3*4) / 3+3+4</span></span><br><span class="line">m = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">np.average(m,weights=[<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br></pre></td></tr></table></figure>
+<pre><code>2.1
+</code></pre><p>几何平均数</p>
+<p>1.n个变量值乘积的n次方</p>
+<script type="math/tex; mode=display">G =\sqrt[n]{X_1 \times X_2 \times \cdot \cdot \cdot \times X_n } = \sqrt[n]{\prod_{i=1}^n X_i}</script><p>2.几何平均数主要用于计算平均比率，变量值本身是比率的形式，用几何平均法比较合理。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> gmean</span><br><span class="line">l = [<span class="number">1.045</span>,<span class="number">1.021</span>,<span class="number">1.255</span>,<span class="number">1.019</span>]</span><br><span class="line"></span><br><span class="line">gmean(l)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>1.0807866848335959
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/%E7%BB%9F%E8%AE%A1/">统计</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%A6%E9%87%8F/" rel="tag">数据度量</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-离散程度度量" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -818,120 +1010,6 @@ Name: Age, dtype: int64
 <p>离散系数也称为变异系数，它是一组数据的标准差与其相应平均数之比</p>
 <script type="math/tex; mode=display">cv = \frac{s}{\overline{x}}</script><p>离散系数主要用于比较不同样本数据，或者量纲不同变量的离散程度，离散系数越大，数据离散程度越大，反之离散程度越小。</p>
 
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/%E7%BB%9F%E8%AE%A1/">统计</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%A6%E9%87%8F/" rel="tag">数据度量</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-数据集中趋势度量" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2021/09/22/%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%AD%E8%B6%8B%E5%8A%BF%E5%BA%A6%E9%87%8F/" class="article-date">
-      <time datetime="2021-09-22T14:43:29.000Z" itemprop="datePublished">2021-09-22</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2021/09/22/%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%AD%E8%B6%8B%E5%8A%BF%E5%BA%A6%E9%87%8F/">数据集中趋势度量</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p><strong>集中趋势的度量</strong></p>
-<p>集中趋势是一组数据向某一中心值靠拢的程度，反应了一组数据中心点的位置所在。</p>
-<p>1.分类数据：众数</p>
-<p>众数是一组数据中出现次数最多的变量值</p>
-<p>众数主要用于测度分类数据的集中趋势</p>
-<p>众数不受极端值影响，如果没有明显的集中趋势或最高峰点，众数可能不存在</p>
-<p>可以有多个众数</p>
-<p>数据量少的情况不适合使用众数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> mode</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">&#x27;ignore&#x27;</span>)</span><br><span class="line"><span class="comment">#使用scipy 库的mode函数求众数</span></span><br><span class="line"><span class="built_in">list</span> = [<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;3&#x27;</span>,<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;2&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(mode(<span class="built_in">list</span>))</span><br><span class="line"><span class="built_in">print</span>(mode(<span class="built_in">list</span>)[<span class="number">0</span>][<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
-<pre><code>ModeResult(mode=array([&#39;2&#39;], dtype=&#39;&lt;U1&#39;), count=array([3]))
-2
-</code></pre><p>顺序数据：中位数和分位数</p>
-<p>中位数是一组数据排序后处于中间位置的变量值</p>
-<p>适用于偏度较大的数据</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#求中位数  元素个数奇数的情况 n+1 / 2 位置的值就是中位数</span></span><br><span class="line"><span class="comment">#median函数会自动排序</span></span><br><span class="line">odd = np.array([<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>])</span><br><span class="line"><span class="built_in">print</span>(np.median(odd))</span><br><span class="line"></span><br><span class="line"><span class="comment">#n为偶数的情况 中间两个值之和除以2</span></span><br><span class="line">even = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>])</span><br><span class="line"><span class="comment">#3+4 /2</span></span><br><span class="line"><span class="built_in">print</span>(np.median(even))</span><br></pre></td></tr></table></figure>
-<pre><code>3.0
-3.5
-</code></pre><p>四分位数</p>
-<p>通过三个点将数据分为4部分 ——25%——50%——75%——</p>
-<p>常用算法有几种 但是差别不大</p>
-<p>例如：</p>
-<p>第一分位 Q1=(n+1)×0.25</p>
-<p>第二分位 Q 2 = ( n + 1 ) × 0.5</p>
-<p>第三分位 Q 3 = ( n + 1 ) × 0.75 </p>
-<p>其中第一分位与第三分位数中间包含了50%的数据</p>
-<p>numpy percetile计算方法：</p>
-<p>位置<br>Q1=1+(n−1)×0.25</p>
-<p>位置<br>Q2=1+(n−1)×0.5</p>
-<p>位置<br>Q3=1+(n−1)×0.75</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#percentile函数求四分卫数  自动排序</span></span><br><span class="line">p = np.array([<span class="number">8</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(np.percentile(p,(<span class="number">25</span>)))</span><br><span class="line"><span class="built_in">print</span>(np.percentile(p,(<span class="number">50</span>)))</span><br><span class="line"><span class="built_in">print</span>(np.percentile(p,(<span class="number">75</span>)))</span><br></pre></td></tr></table></figure>
-<pre><code>2.75
-4.5
-6.25
-</code></pre><p>数值型数据：平均数</p>
-<p>平均数也称为均值，它是一组数据相加后除以数据总数得到的结果</p>
-<p>平均数不适用于分类数据和顺序数据，并且容易受到极大值，极小值影响</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#求平均数</span></span><br><span class="line">m = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br><span class="line">np.mean(m)</span><br><span class="line"></span><br><span class="line"><span class="comment">#极大值对平均数的影响</span></span><br><span class="line">m1 = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">10</span>])</span><br><span class="line">np.mean(m1)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<pre><code>4.0
-</code></pre><p>加权平均数：</p>
-<p>一组数据中每个数据具有权重的情况下使用加权平均数计算均值</p>
-<p>权重一般计算方法是计算各数值出现的频率</p>
-<p>average 函数计算加权方法 </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#average 函数计算加权方法</span></span><br><span class="line"><span class="comment">#(1*3 + 2*3 + 3*4) / 3+3+4</span></span><br><span class="line">m = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">np.average(m,weights=[<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br></pre></td></tr></table></figure>
-<pre><code>2.1
-</code></pre><p>几何平均数</p>
-<p>1.n个变量值乘积的n次方</p>
-<script type="math/tex; mode=display">G =\sqrt[n]{X_1 \times X_2 \times \cdot \cdot \cdot \times X_n } = \sqrt[n]{\prod_{i=1}^n X_i}</script><p>2.几何平均数主要用于计算平均比率，变量值本身是比率的形式，用几何平均法比较合理。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> gmean</span><br><span class="line">l = [<span class="number">1.045</span>,<span class="number">1.021</span>,<span class="number">1.255</span>,<span class="number">1.019</span>]</span><br><span class="line"></span><br><span class="line">gmean(l)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<pre><code>1.0807866848335959
-</code></pre>
       
     </div>
     
@@ -2033,10 +2111,10 @@ Name: Embarked, dtype: int64
 
 
   
-    <article id="post-总体均值区间估计" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-两个总体均值之差区间估计" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2021/09/22/%E6%80%BB%E4%BD%93%E5%9D%87%E5%80%BC%E5%8C%BA%E9%97%B4%E4%BC%B0%E8%AE%A1/" class="article-date">
+      <a  href="/2021/09/22/%E4%B8%A4%E4%B8%AA%E6%80%BB%E4%BD%93%E5%9D%87%E5%80%BC%E4%B9%8B%E5%B7%AE%E5%8C%BA%E9%97%B4%E4%BC%B0%E8%AE%A1/" class="article-date">
       <time datetime="2021-09-22T13:07:48.000Z" itemprop="datePublished">2021-09-22</time>
 </a>
 
@@ -2051,7 +2129,7 @@ Name: Embarked, dtype: int64
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2021/09/22/%E6%80%BB%E4%BD%93%E5%9D%87%E5%80%BC%E5%8C%BA%E9%97%B4%E4%BC%B0%E8%AE%A1/">总体均值区间估计</a>
+      <a  class="article-title" href="/2021/09/22/%E4%B8%A4%E4%B8%AA%E6%80%BB%E4%BD%93%E5%9D%87%E5%80%BC%E4%B9%8B%E5%B7%AE%E5%8C%BA%E9%97%B4%E4%BC%B0%E8%AE%A1/">两个总体均值之差区间估计--独立样本</a>
     </h1>
   
 
@@ -2062,109 +2140,73 @@ Name: Embarked, dtype: int64
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>总体均值区间估计</p>
-<p>有一大批糖果，从中随机抽取16袋，称得质量（单位：g）如下：</p>
-<p>506 508 499 503 504 510 497 512</p>
-<p>514 505 493 496 506 502 509 496</p>
-<p>设袋装糖果质量近似服从正态分布，试求总体均值$\;\mu$的置信度为0.95的置信区间。</p>
-<p>假设与条件:</p>
-<p>1.糖果质量近似服从正态分布。</p>
-<p>2.随机取16袋样本，置信度为0.95，构造估计量的样本数小于30，根据经验为小样本,并且总体方差未知。</p>
-<p>要用t分布建立总体均值$\;\mu$的置信区间</p>
-<p>解：总体均值$\mu$在1-$\alpha$置信水平下的置信区间为$\big(\overline{X} \pm \frac{S}{\sqrt{n}}t_{\alpha/2}(n-1)\big) $</p>
-<p>$\overline{X}$—样本均值，S为样本标准差，n为样本容量。</p>
-<p>显著水平$\alpha$=0.05,$\alpha/2$=0.025,自由度n-1=15，查t分布表得$t_{\alpha/2}(n-1)$=2.1315</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> stats</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">x = [<span class="number">506</span> ,<span class="number">508</span> ,<span class="number">499</span> ,<span class="number">503</span> ,<span class="number">504</span> ,<span class="number">510</span> ,<span class="number">497</span> </span><br><span class="line">     ,<span class="number">512</span> ,<span class="number">514</span> ,<span class="number">505</span> ,<span class="number">493</span> ,<span class="number">496</span> ,<span class="number">506</span> ,<span class="number">502</span> ,<span class="number">509</span> ,<span class="number">496</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">#t分布建立置信区间函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">t_interval</span>(<span class="params">x,conf,df</span>):</span></span><br><span class="line">    alpha = <span class="number">1</span>-conf<span class="comment">#</span></span><br><span class="line">    n = df-<span class="number">1</span><span class="comment">#自由度</span></span><br><span class="line">        </span><br><span class="line">    std = np.std(x,ddof=<span class="number">1</span>)<span class="comment">#标准差</span></span><br><span class="line">    mu = np.mean(x)<span class="comment">#均值</span></span><br><span class="line">    t_score = stats.t.isf(alpha/<span class="number">2</span>,df=n)<span class="comment">#t分布临界值</span></span><br><span class="line">   </span><br><span class="line">    low = mu-(std/np.sqrt(df))*t_score</span><br><span class="line">    upper = mu+(std/np.sqrt(df))*t_score</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> [low,upper]</span><br><span class="line"></span><br><span class="line">t_interval(x,<span class="number">0.95</span>,<span class="number">16</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#有95%的样本糖果均值所构造的置信区间会包括总体糖果的质量均值</span></span><br><span class="line"><span class="comment">#或者说95%把握认为总体糖果质量均值落在置信区间中</span></span><br></pre></td></tr></table></figure>
-<pre><code>[500.44510746243924, 507.05489253756076]
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用scipy 求置信区间</span></span><br><span class="line">sem = stats.sem(x)<span class="comment">#样本标准误差</span></span><br><span class="line">mu = np.mean(x)<span class="comment">#均值</span></span><br><span class="line">ci = stats.t.interval(alpha=<span class="number">0.95</span>,df=<span class="built_in">len</span>(x)-<span class="number">1</span>,loc=mu,scale=sem)</span><br><span class="line">ci</span><br></pre></td></tr></table></figure>
-<pre><code>(500.44510746243924, 507.05489253756076)
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/%E7%BB%9F%E8%AE%A1/">统计</a>
-    </div>
+        <p><strong>两个总体参数的区间估计</strong></p>
+<p>两个总体均值之差的区间估计——独立样本</p>
+<p><strong>1.大样本的估计</strong></p>
+<p>如果两个样本是从两个总体中独立抽取的，假设是A,B两个总体，A中抽取样本与B中抽取样本相互独立，则称为独立样本</p>
+<p>两个样本均值之差抽样分布服从期望：$E(\bar{X_1}-\bar{X_2}) = E(\bar{X_1})-E(\bar{X_2}) = \mu_{1}-\mu_{2}$<br>,方差为$D(\bar{X_1}) + D(\bar{X_2}) = \frac{\sigma_{1}^2}{n_1} +\frac{\sigma_{2}^2}{n_2}$的正态分布。</p>
+<p>两个总体方差$\sigma^2$和$\sigma^2$都已知时，两个总体均值之差$\mu_{1}-\mu_{2}$在1-α置信水平下的置信区间为：</p>
+<script type="math/tex; mode=display">(\bar{x_1} - \bar{x_2}) \pm z_{\alpha/2}\sqrt{ \frac{\sigma_{1}^2}{n_1} +\frac{\sigma_{2}^2}{n_2}}</script><p>两个总体方差$\sigma^2$和$\sigma^2$未知时，两个总体均值之差$\mu_{1}-\mu_{2}$在1-α置信水平下的置信区间为：</p>
+<script type="math/tex; mode=display">(\bar{x_1} - \bar{x_2}) \pm z_{\alpha/2}\sqrt{ \frac{s_{1}^2}{n_1} +\frac{s_{2}^2}{n_2}}</script><p>例子：估计两所中学学生高考英语平均分数之差，两所中学独立抽样数据：</p>
+<p>中学1： $n_1$=46,$\bar{x_1}$=86,$s_1$=5.8</p>
+<p>中学2： $n_2$=33,$\bar{x_2}$=78,$s_2$=7.2</p>
+<p>建立两所中学高考英语平均分数之差的95%置信区间</p>
+<p>因为这里只强调平均分的差异，不强调某一方检验，查表得双侧临界值为$z_{\alpha/2}$=1.96。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">s1 = [<span class="number">46</span>,<span class="number">86</span>,<span class="number">5.8</span>]</span><br><span class="line">s2 = [<span class="number">33</span>,<span class="number">78</span>,<span class="number">7.2</span>]</span><br><span class="line">table = pd.DataFrame([s1,s2],index=[<span class="string">&#x27;中学1&#x27;</span>,<span class="string">&#x27;中学2&#x27;</span>],columns=[<span class="string">&#x27;人数&#x27;</span>,<span class="string">&#x27;均值&#x27;</span>,<span class="string">&#x27;标准差&#x27;</span>]).T</span><br><span class="line">table  </span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>中学1</th>
+      <th>中学2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>人数</th>
+      <td>46.0</td>
+      <td>33.0</td>
+    </tr>
+    <tr>
+      <th>均值</th>
+      <td>86.0</td>
+      <td>78.0</td>
+    </tr>
+    <tr>
+      <th>标准差</th>
+      <td>5.8</td>
+      <td>7.2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/" rel="tag">参数估计</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
 
 
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#根据公式计算</span></span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> stats </span><br><span class="line"><span class="comment">#由于方差未知，所以用样本方差代替,上面第二个式子</span></span><br><span class="line">var = np.sqrt(<span class="number">5.8</span>**<span class="number">2</span> /<span class="number">46</span> + <span class="number">7.2</span>**<span class="number">2</span> / <span class="number">33</span>)</span><br><span class="line"><span class="comment">#下界</span></span><br><span class="line">low = (<span class="number">86</span>-<span class="number">78</span>)-<span class="number">1.96</span>*var</span><br><span class="line"><span class="comment">#上界</span></span><br><span class="line">upper = (<span class="number">86</span>-<span class="number">78</span>)+<span class="number">1.96</span>*var</span><br><span class="line"><span class="built_in">print</span>([low,upper])</span><br><span class="line"><span class="comment">#所以说两小学英语平均分之差的95%置信区间为5.02---10.97分</span></span><br><span class="line"><span class="comment">#或者说有%95的把握，英语平均分差值在5.02---10.97之间</span></span><br></pre></td></tr></table></figure>
+<pre><code>[5.0260828615704405, 10.97391713842956]
+</code></pre><p><strong>2.小样本的估计</strong><br>两个样本都为小样本的情况估计两个总体均值之差，有两个假设前提：</p>
+<p>1 两个总体服从正态分布</p>
+<p>2 两个随机样本独立抽自两个总体</p>
+<hr>
+<p>当两个总体方差未知但相等，即$\sigma_1^2$</p>
+<p>stats.norm.interval(0.95)</p>
 
-
-
-
-
-
-
-
-
-  
-    <article id="post-总体方差与均值区间估计" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2021/09/22/%E6%80%BB%E4%BD%93%E6%96%B9%E5%B7%AE%E4%B8%8E%E5%9D%87%E5%80%BC%E5%8C%BA%E9%97%B4%E4%BC%B0%E8%AE%A1/" class="article-date">
-      <time datetime="2021-09-22T13:07:48.000Z" itemprop="datePublished">2021-09-22</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2021/09/22/%E6%80%BB%E4%BD%93%E6%96%B9%E5%B7%AE%E4%B8%8E%E5%9D%87%E5%80%BC%E5%8C%BA%E9%97%B4%E4%BC%B0%E8%AE%A1/">总体均值与方差区间估计</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>分别使用金球和铂球测定引力常数(单位：10-11m3×kg-1×s-2)．</p>
-<p>   (1)用金球测定观测值6.683，6.681，6.676，6.678，6.679,6.672;</p>
-<p>   (2)用铂球测定观测值6.661，6.661，6.667，6.667，6.664.设测定值总体为N(u，σ2)，其中u、σ2均未知．试就(1)、(2)两种情况分别求u的置信度为0.9的置信区间，并求σ2的置信度为0.9的置信区间</p>
-<p><strong>1.求u的置信度为0.9的置信区间：</strong></p>
-<p>由于是小样本抽样，并且总体均值与方差未知，使用t分布建立总体均值$\;\mu$的置信区间</p>
-<p>总体均值$\mu$在1-$\alpha$置信水平下的置信区间为$\big(\overline{X} \pm \frac{S}{\sqrt{n}}t_{\alpha/2}(n-1)\big) $</p>
-<p>这里1-$\alpha$=0.9,$\alpha$=0.1,$\alpha/2$=0.05,</p>
-<p>金球样本自由度为n1-1=5,铂球样本自由度为n2-1=4</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">x1 = [<span class="number">6.683</span>,<span class="number">6.681</span>,<span class="number">6.676</span>,<span class="number">6.678</span>,<span class="number">6.679</span>,<span class="number">6.672</span>]</span><br><span class="line">x2 = [<span class="number">6.661</span>,<span class="number">6.661</span>,<span class="number">6.667</span>,<span class="number">6.667</span>,<span class="number">6.664</span>]</span><br><span class="line"><span class="comment">#使用之前t_interval函数 建立置信区间</span></span><br><span class="line">x1_ci=t_interval(x1,<span class="number">0.9</span>,<span class="number">6</span>)</span><br><span class="line">x2_ci=t_interval(x2,<span class="number">0.9</span>,<span class="number">5</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;用金球测定时,μ的置信区间是&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(x1_ci))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;用铂球测定时,μ的置信区间是&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(x2_ci))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;###############&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">################</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#使用scipy库计算#</span></span><br><span class="line">x1_sem = stats.sem(x1)</span><br><span class="line">x2_sem = stats.sem(x2)</span><br><span class="line"></span><br><span class="line">x1_df = <span class="built_in">len</span>(x1)-<span class="number">1</span></span><br><span class="line">x2_df=<span class="built_in">len</span>(x2)-<span class="number">1</span></span><br><span class="line"></span><br><span class="line">x1_mu=np.mean(x1)</span><br><span class="line">x2_mu=np.mean(x2)</span><br><span class="line"></span><br><span class="line">x1_ci=stats.t.interval(alpha=<span class="number">0.9</span>,df=x1_df,loc=x1_mu,scale=x1_sem)</span><br><span class="line">x2_ci=stats.t.interval(alpha=<span class="number">0.9</span>,df=x2_df,loc=x2_mu,scale=x2_sem)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;用金球测定时,μ的置信区间是&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(x1_ci))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;用铂球测定时,μ的置信区间是&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(x2_ci))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<pre><code>用金球测定时,μ的置信区间是[6.67498413748818, 6.681349195845152]
-用铂球测定时,μ的置信区间是[6.66113982740759, 6.6668601725924095]
-###############
-用金球测定时,μ的置信区间是(6.67498413748818, 6.681349195845152)
-用铂球测定时,μ的置信区间是(6.66113982740759, 6.6668601725924095)
-</code></pre><p><strong>2.求σ2的置信度为0.9的置信区间</strong><br>与第一个问题不同，这是要求方差的置信区间，方差与样本差异有关，而与样本量关系不大。</p>
-<p>样本方差服从自由度为n-1的卡方分布（证明要看数理统计教材），所以直接用总体方差的区间估计方法：</p>
-<script type="math/tex; mode=display">\frac{(n-1)s^2}{\chi_{\alpha/2}^2} \leq \sigma^2 \leq \frac{(n-1)s^2}{\chi_{1-\alpha/2}^2}</script><p>这里$S^2$是样本方差，$\chi_{\alpha/2}^2$， $\chi_{1-\alpha/2}^2$是卡方分布临界值</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">x1 = [<span class="number">6.683</span>,<span class="number">6.681</span>,<span class="number">6.676</span>,<span class="number">6.678</span>,<span class="number">6.679</span>,<span class="number">6.672</span>]</span><br><span class="line">x2 = [<span class="number">6.661</span>,<span class="number">6.661</span>,<span class="number">6.667</span>,<span class="number">6.667</span>,<span class="number">6.664</span>]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">chi_interval</span>(<span class="params">x,conf,n</span>):</span></span><br><span class="line">    <span class="comment">#std = np.std(x1,ddof=1)</span></span><br><span class="line">    var  =np.var(x1,ddof=<span class="number">1</span>)<span class="comment">#方差</span></span><br><span class="line">    alpha = <span class="number">1</span>-conf</span><br><span class="line">    df = n-<span class="number">1</span></span><br><span class="line">    score_0 = stats.chi2.isf(alpha/<span class="number">2</span>,df)<span class="comment">#下界卡方分布临界值</span></span><br><span class="line">    score</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">x1 = [<span class="number">6.683</span>,<span class="number">6.681</span>,<span class="number">6.676</span>,<span class="number">6.678</span>,<span class="number">6.679</span>,<span class="number">6.672</span>]</span><br><span class="line">x2 = [<span class="number">6.661</span>,<span class="number">6.661</span>,<span class="number">6.667</span>,<span class="number">6.667</span>,<span class="number">6.664</span>]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">chi_interval</span>(<span class="params">x,conf,n</span>):</span></span><br><span class="line">    <span class="comment">#std = np.std(x1,ddof=1)</span></span><br><span class="line">    var  =np.var(x,ddof=<span class="number">1</span>)<span class="comment">#方差</span></span><br><span class="line">    alpha = <span class="number">1</span>-conf</span><br><span class="line">    df = n-<span class="number">1</span></span><br><span class="line">    score_0 = stats.chi2.isf(alpha/<span class="number">2</span>,df)<span class="comment">#下界卡方分布临界值</span></span><br><span class="line">    score_1 = stats.chi2.isf(<span class="number">1</span>-alpha/<span class="number">2</span>,df)<span class="comment">#上界卡方分布临界值</span></span><br><span class="line">    <span class="comment">#或者使用stats.chi2.interval(0.9,5)求临界值</span></span><br><span class="line">    <span class="comment">#score=stats.chi2.interval(conf,df)</span></span><br><span class="line">   <span class="comment"># print(score)(1.145476226061769, 11.070497693516351)</span></span><br><span class="line">    <span class="comment">#score_0=score[1]</span></span><br><span class="line">    <span class="comment">#score_1=score[0]</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    low = df*var/score_0</span><br><span class="line">    upper = df*var/score_1</span><br><span class="line">    <span class="keyword">return</span> [low,upper]</span><br><span class="line"></span><br><span class="line">x1_ci = chi_interval(x1,<span class="number">0.9</span>,<span class="number">6</span>)</span><br><span class="line">x2_ci = chi_interval(x2,<span class="number">0.9</span>,<span class="number">5</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;用金球测定时,σ2的置信区间是&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(x1_ci))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;用铂球测定时,σ2的置信区间是&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(x2_ci))</span><br></pre></td></tr></table></figure>
-<pre><code>用金球测定时,σ2的置信区间是[6.759708136442946e-06, 6.532945130656948e-05]
-用铂球测定时,σ2的置信区间是[3.7943748035426858e-06, 5.065264373908214e-05]
-</code></pre>
       
     </div>
     
